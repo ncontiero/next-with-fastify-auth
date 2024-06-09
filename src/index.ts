@@ -5,9 +5,12 @@ import {
 } from "fastify-type-provider-zod";
 import fastify from "fastify";
 import fastifyCors from "@fastify/cors";
+import fastifyJwt from "@fastify/jwt";
 
 import { env } from "@/env";
 import { errorHandler } from "@/http/error-handler";
+
+import { authRoute } from "@/http/routes/auth";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -16,14 +19,15 @@ app.setValidatorCompiler(validatorCompiler);
 
 app.setErrorHandler(errorHandler);
 
+app.register(fastifyJwt, {
+  secret: env.JWT_SECRET,
+});
 app.register(fastifyCors);
 
-app.get("/", () => {
-  return { hello: "world" };
-});
+app.register(authRoute);
 
-// eslint-disable-next-line promise/catch-or-return, unicorn/prefer-top-level-await
-app.listen({ port: env.PORT }).then(() => {
+app.listen({ port: env.PORT, host: "0.0.0.0" }, (err, address) => {
+  if (err) throw err;
   // eslint-disable-next-line no-console
-  console.log(`HTTP server running on ${env.PORT}!`);
+  console.log(`Server listening on ${address}`);
 });

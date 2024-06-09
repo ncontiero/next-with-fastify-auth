@@ -1,3 +1,9 @@
 import { dkshs } from "@dkshs/eslint-config";
 
-export default dkshs();
+export default dkshs({
+  javascript: {
+    overrides: {
+      "require-await": "off",
+    },
+  },
+});
