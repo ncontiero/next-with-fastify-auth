@@ -15,7 +15,10 @@
   },
   "devDependencies": {
     "@dkshs/eslint-config": "^2.6.0",
+    "@nwfa/tsconfig": "workspace:*",
+    "@types/node": "^20.14.2",
     "eslint": "^9.4.0",
-    "turbo": "^2.0.3"
+    "turbo": "^2.0.3",
+    "typescript": "^5.4.5"
   }
 }
