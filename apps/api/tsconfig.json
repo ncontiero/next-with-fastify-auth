@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@nwfa/tsconfig/base.json",
+  "compilerOptions": {
+    /* Module Resolution and Detection */
+    "baseUrl": ".",
+    /* Path Aliases */
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+  },
+  "include": ["src/**/*.ts"],
+}

@@ -1,0 +1,9 @@
+{
+  "name": "@nwfa/tsconfig",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A collection of TypeScript configuration files used by the NWFA project.",
+  "author": "DKSHS",
+  "license": "MIT",
+  "files": ["base.json", "nextjs.json"]
+}

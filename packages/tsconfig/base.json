@@ -1,33 +1,18 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Default",
   "compilerOptions": {
-    /* Compilation and Target Settings */
     "incremental": false,
     "target": "ES2022",
-
-    /* Library Definitions */
     "lib": ["ES2023"],
-
-    /* Module Resolution and Detection */
-    "baseUrl": ".",
     "module": "Node16",
     "moduleResolution": "Node16",
-
-    /* Path Aliases */
-    "paths": {
-      "@/*": ["./src/*"]
-    },
-
-    /* JavaScript and Strictness */
     "resolveJsonModule": true,
     "strict": true,
     "noUncheckedIndexedAccess": true,
-
-    /* Output and Interoperability */
     "declaration": true,
     "declarationMap": true,
     "esModuleInterop": true,
     "skipLibCheck": true
-  },
-  "include": ["src/**/*.ts"],
+  }
 }
