@@ -20,5 +20,8 @@
     "eslint": "^9.4.0",
     "turbo": "^2.0.3",
     "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
