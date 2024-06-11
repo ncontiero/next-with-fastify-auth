@@ -10,6 +10,10 @@ export const env = createEnv({
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
+    // these variables are used for the site's SEO
+    SITE_NAME: z.string().default("NWFA"),
+    SITE_LOCALE: z.string().default("en_US"),
+    SITE_BASEURL: z.string().url().default("http://localhost:3000"),
   },
 
   /**
@@ -27,6 +31,10 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
+    // SEO
+    SITE_NAME: process.env.SITE_NAME,
+    SITE_LOCALE: process.env.SITE_LOCALE,
+    SITE_BASEURL: process.env.SITE_BASEURL,
 
     // Client
     // ----------------------------
