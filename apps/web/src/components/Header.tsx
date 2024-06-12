@@ -1,9 +1,13 @@
+import type { User } from "@/utils/types";
 import Image from "next/image";
 import Link from "next/link";
+import { fetcher } from "@/utils/fetcher";
 import { ProfileButton } from "./ProfileButton";
 
-export function Header() {
-  const user = null;
+export async function Header() {
+  const { data: user } = await fetcher<User>("auth/profile", {
+    throwError: false,
+  });
 
   return (
     <header className="fixed inset-x-0 z-[999] h-[72px] border-b bg-secondary/60 backdrop-blur-md">

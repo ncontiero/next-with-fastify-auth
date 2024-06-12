@@ -1,11 +1,18 @@
+import { redirect } from "next/navigation";
+import { isAuthenticated } from "@/utils/auth";
+
 export default function AuthLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  if (isAuthenticated()) {
+    redirect("/");
+  }
+
   return (
-    <div className="flex mt-16 flex-col items-center justify-center px-4">
-      <div className="border p-6 rounded-md w-96">{children}</div>
+    <div className="mt-16 flex flex-col items-center justify-center px-4">
+      <div className="w-96 rounded-md border p-6">{children}</div>
     </div>
   );
 }
