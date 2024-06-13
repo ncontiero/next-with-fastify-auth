@@ -29,13 +29,14 @@ export async function baseFetcher<T = unknown>(
     let msg = res.statusText;
     try {
       const json = JSON.parse(await res.text());
-      msg = json.full_message || msg;
+      msg = json.message || msg;
     } catch {}
     if (throwError) throw new Error(msg);
     return { data, ok: false, errorMsg: msg };
   }
   try {
-    data = res.status !== 201 ? ((await res.json()) as T) : null;
+    const contentLength = res.headers.get("Content-Length");
+    data = contentLength === "0" ? null : (JSON.parse(await res.text()) as T);
   } catch (error) {
     if (throwError) throw error;
   }
