@@ -1,5 +1,5 @@
-import type { User } from "@/utils/types";
-import { ChevronDown, LogOut } from "lucide-react";
+import type { User as UserProps } from "@/utils/types";
+import { ChevronDown, LogOut, User } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/Avatar";
 import {
@@ -10,7 +10,7 @@ import {
 } from "./ui/DropdownMenu";
 
 interface ProfileButtonProps {
-  readonly user: User;
+  readonly user: UserProps;
 }
 
 function getInitials(name: string): string {
@@ -40,6 +40,12 @@ export function ProfileButton({ user }: ProfileButtonProps) {
         <ChevronDown className="size-4 text-muted-foreground" />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
+        <DropdownMenuItem asChild className="p-2">
+          <a href="/profile">
+            <User className="mr-2 size-4" />
+            Profile
+          </a>
+        </DropdownMenuItem>
         <DropdownMenuItem asChild className="p-2">
           <a href="/api/auth/sign-out">
             <LogOut className="mr-2 size-4" />
