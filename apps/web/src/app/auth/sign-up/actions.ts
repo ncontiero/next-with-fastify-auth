@@ -2,7 +2,6 @@
 
 import { cookies } from "next/headers";
 import { z } from "zod";
-import { toast } from "react-toastify";
 import { fetcher } from "@/utils/fetcher";
 
 const signUpSchema = z
