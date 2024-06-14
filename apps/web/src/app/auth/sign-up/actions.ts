@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 import { z } from "zod";
-import { fetcher } from "@/utils/fetcher";
+import { api } from "@/utils/api";
 
 const signUpSchema = z
   .object({
@@ -32,8 +32,7 @@ export async function signUpAction(data: FormData) {
   }
 
   try {
-    const { data } = await fetcher<{ token: string }>("auth/sign-up", {
-      method: "POST",
+    const { data } = await api.post<{ token: string }>("signUp", {
       body: JSON.stringify(result.data),
       headers: { "Content-Type": "application/json" },
     });

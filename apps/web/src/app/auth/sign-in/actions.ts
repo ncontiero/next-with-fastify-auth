@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 import { z } from "zod";
-import { fetcher } from "@/utils/fetcher";
+import { api } from "@/utils/api";
 
 const signInSchema = z.object({
   email: z
@@ -21,8 +21,7 @@ export async function signInWithEmailAndPassword(data: FormData) {
   }
 
   try {
-    const { data } = await fetcher<{ token: string }>("auth/sign-in", {
-      method: "POST",
+    const { data } = await api.post<{ token: string }>("signIn", {
       body: JSON.stringify(result.data),
       headers: { "Content-Type": "application/json" },
     });

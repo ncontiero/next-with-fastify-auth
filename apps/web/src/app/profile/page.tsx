@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { User } from "@/utils/types";
 import { redirect } from "next/navigation";
 import { isAuthenticated } from "@/utils/auth";
-import { fetcher } from "@/utils/fetcher";
+import { api } from "@/utils/api";
 import { Label } from "@/components/ui/Label";
 import { Input } from "@/components/ui/Input";
 import { Link } from "@/components/ui/Link";
@@ -16,7 +16,7 @@ export default async function ProfilePage() {
   if (!isAuthenticated()) {
     redirect("/auth/sign-in");
   }
-  const { data: user } = await fetcher<User>("auth/profile");
+  const { data: user } = await api.get<User>("profile");
   if (!user) {
     redirect("/auth/sign-in");
   }

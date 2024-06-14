@@ -1,11 +1,11 @@
 import type { User } from "@/utils/types";
 import Image from "next/image";
-import { fetcher } from "@/utils/fetcher";
+import { api } from "@/utils/api";
 import { ProfileButton } from "./ProfileButton";
 import { Link } from "./ui/Link";
 
 export async function Header() {
-  const { data: user } = await fetcher<User>("auth/profile", {
+  const { data: user } = await api.get<User>("profile", {
     throwError: false,
   });
 

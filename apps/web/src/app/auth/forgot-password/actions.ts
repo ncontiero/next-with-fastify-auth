@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import { fetcher } from "@/utils/fetcher";
+import { api } from "@/utils/api";
 
 const recoverPasswordSchema = z.object({
   email: z
@@ -19,8 +19,7 @@ export async function recoverPasswordAction(data: FormData) {
   }
 
   try {
-    await fetcher("auth/password/recover", {
-      method: "POST",
+    await api.post("recoverPassword", {
       body: JSON.stringify(result.data),
       headers: { "Content-Type": "application/json" },
     });
