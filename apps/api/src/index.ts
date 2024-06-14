@@ -10,7 +10,7 @@ import fastifyJwt from "@fastify/jwt";
 import { env } from "@/env";
 import { errorHandler } from "@/http/error-handler";
 
-import { authRoute } from "@/http/routes/auth";
+import { authRoutes } from "@/http/routes/auth";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -24,7 +24,7 @@ app.register(fastifyJwt, {
 });
 app.register(fastifyCors);
 
-app.register(authRoute);
+app.register(authRoutes);
 
 app.listen({ port: env.PORT, host: "0.0.0.0" }, (err, address) => {
   if (err) throw err;

@@ -5,7 +5,7 @@ import { resetPassword } from "./reset-password";
 
 const PASSWORD_PREFIX = "/password";
 
-export async function passwordRoute(app: FastifyInstance) {
+export async function passwordRoutes(app: FastifyInstance) {
   const opts = {
     prefix: PASSWORD_PREFIX,
   };
