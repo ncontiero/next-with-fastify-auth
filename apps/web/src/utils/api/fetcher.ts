@@ -31,7 +31,10 @@ export async function fetcher<T = unknown>(
   }
   try {
     const contentLength = res.headers.get("Content-Length");
-    data = contentLength === "0" ? null : (JSON.parse(await res.text()) as T);
+    data =
+      contentLength === "0" || res.body === null
+        ? null
+        : (JSON.parse(await res.text()) as T);
   } catch (error) {
     if (throwError) throw error;
   }
