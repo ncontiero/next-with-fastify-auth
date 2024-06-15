@@ -20,7 +20,7 @@ export type APIGetOptions = Omit<APIOptions, "body">;
 export class API {
   private cookieStore: CookiesFn | undefined;
   private token: string | null = null;
-  private fetcherOpts?: APIOptions;
+  private headers?: APIOptions["headers"];
 
   /**
    * Initializes the API client by setting up necessary configurations.
@@ -31,10 +31,8 @@ export class API {
       this.cookieStore = cookies;
     }
     this.token = getCookie("token", { cookies: this.cookieStore }) ?? null;
-    this.fetcherOpts = {
-      headers: {
-        Authorization: `Bearer ${this.token}`,
-      },
+    this.headers = {
+      Authorization: `Bearer ${this.token}`,
     };
   }
 
@@ -45,14 +43,17 @@ export class API {
    * @param opts - Additional options for the request.
    * @returns A promise that resolves to the response data.
    */
-  private _fetcher<T>(
+  private async _fetcher<T>(
     method: Method,
     path: string,
     opts?: APIOptions,
   ): Promise<FetcherResponse<T>> {
+    if (!this.token) await this.init();
+    const { headers, ...rest } = opts || {};
+
     return fetcher(path, {
-      ...opts,
-      ...this.fetcherOpts,
+      ...rest,
+      headers: { ...headers, ...this.headers },
       method,
     });
   }
@@ -84,4 +85,3 @@ export class API {
 }
 
 export const api = new API();
-api.init();
