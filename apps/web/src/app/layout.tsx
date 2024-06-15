@@ -6,6 +6,7 @@ import { Inter } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import { env } from "@/env";
 import { Header } from "@/components/Header";
+import { SearchParamsHandler } from "./search-params-handler";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -61,6 +62,7 @@ export default function RootLayout({
           closeOnClick
           stacked
         />
+        <SearchParamsHandler />
         <Header />
         <div className="pb-20 pt-[72px]">{children}</div>
       </body>
