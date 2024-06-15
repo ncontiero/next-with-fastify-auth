@@ -7,6 +7,7 @@ const envVariables = z.object({
     .default("development"),
   DATABASE_URL: z.string().url(),
 
+  FRONTEND_TOKEN_CALLBACK_URL: z.string().url(),
   PORT: z.coerce.number().default(3333),
   JWT_SECRET: z.string(),
 });

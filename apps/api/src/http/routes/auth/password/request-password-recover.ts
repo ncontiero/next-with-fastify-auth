@@ -3,6 +3,7 @@ import type { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from "zod";
 
 import { prisma } from "@/lib/prisma";
+import { env } from "@/env";
 
 export async function requestPasswordRecover(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
@@ -29,7 +30,7 @@ export async function requestPasswordRecover(app: FastifyInstance) {
         return reply.status(201).send();
       }
 
-      const { id: code } = await prisma.token.create({
+      const { id: code, type: tokenType } = await prisma.token.create({
         data: {
           type: "PASSWORD_RECOVER",
           userId: userFromEmail.id,
@@ -37,6 +38,10 @@ export async function requestPasswordRecover(app: FastifyInstance) {
       });
 
       // Send e-mail with password recover link
+      const url = new URL(env.FRONTEND_TOKEN_CALLBACK_URL);
+      url.searchParams.set("code", code);
+      url.searchParams.set("token_type", tokenType);
+      console.log("Password reset url:", url);
 
       // eslint-disable-next-line no-console
       console.log("Password recover token:", code);
