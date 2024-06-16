@@ -10,6 +10,17 @@ const envVariables = z.object({
   FRONTEND_TOKEN_CALLBACK_URL: z.string().url(),
   PORT: z.coerce.number().default(3333),
   JWT_SECRET: z.string(),
+
+  // SMTP
+  SMTP_HOST: z.string(),
+  SMTP_PORT: z.coerce.number(),
+  SMTP_SECURE: z
+    .string()
+    .transform((v) => v === "true")
+    .default("false"),
+  SMTP_USER: z.string(),
+  SMTP_PASSWORD: z.string(),
+  DEFAULT_FROM_EMAIL: z.string().optional(),
 });
 
 // Load environment variables from .env file

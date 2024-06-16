@@ -2,8 +2,9 @@ import type { FastifyInstance } from "fastify";
 import type { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from "zod";
 
-import { prisma } from "@/lib/prisma";
 import { env } from "@/env";
+import { prisma } from "@/lib/prisma";
+import { sendMail } from "@/lib/nodemailer";
 
 export async function requestPasswordRecover(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
@@ -37,14 +38,29 @@ export async function requestPasswordRecover(app: FastifyInstance) {
         },
       });
 
-      // Send e-mail with password recover link
-      const url = new URL(env.FRONTEND_TOKEN_CALLBACK_URL);
-      url.searchParams.set("code", code);
-      url.searchParams.set("token_type", tokenType);
-      console.log("Password reset url:", url);
+      try {
+        const resetPasswordLink = new URL(env.FRONTEND_TOKEN_CALLBACK_URL);
+        resetPasswordLink.searchParams.set("code", code);
+        resetPasswordLink.searchParams.set("token_type", tokenType);
 
-      // eslint-disable-next-line no-console
-      console.log("Password recover token:", code);
+        // Send e-mail with password recover link
+        const emailInfo = await sendMail({
+          to: userFromEmail.email,
+          subject: "Password recover",
+          html: `<a href="${resetPasswordLink}">Reset password</a>`,
+        });
+        // eslint-disable-next-line no-console
+        console.log("Message sent: %s", emailInfo.messageId);
+
+        // eslint-disable-next-line no-console
+        console.log("Password recover token:", code);
+        // eslint-disable-next-line no-console
+        console.log("Password reset link:", resetPasswordLink.toString());
+      } catch (error) {
+        console.error("Error sending password recover e-mail:", error);
+        await prisma.token.delete({ where: { id: code } });
+        return reply.status(500).send();
+      }
 
       return reply.status(201).send();
     },
