@@ -2,9 +2,7 @@
 
 import { AlertTriangle, Loader2 } from "lucide-react";
 import { toast } from "react-toastify";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-import { z } from "zod";
+import { useRouter } from "next/navigation";
 import { useFormState } from "@/hooks/useFormState";
 
 import { Button } from "@/components/ui/Button";
@@ -15,17 +13,12 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/Alert";
 
 import { resetPasswordAction } from "./actions";
 
-export function ResetPasswordForm() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+type ResetPasswordFormProps = {
+  readonly code: string;
+};
 
-  const code = z.string().uuid().safeParse(searchParams.get("code")).data;
-  useEffect(() => {
-    if (!code) {
-      toast.error("Invalid reset password link.");
-      router.push("/auth/sign-in");
-    }
-  }, [code, router]);
+export function ResetPasswordForm({ code }: ResetPasswordFormProps) {
+  const router = useRouter();
 
   const [{ errors, message, success }, handleSubmit, isPending] = useFormState(
     (data) => resetPasswordAction(data, code),

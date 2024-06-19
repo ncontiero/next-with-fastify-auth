@@ -16,7 +16,7 @@ const resetPasswordSchema = z
     path: ["password_confirmation"],
   });
 
-export async function resetPasswordAction(data: FormData, code?: string) {
+export async function resetPasswordAction(data: FormData, code: string) {
   const result = resetPasswordSchema.safeParse({
     code,
     ...Object.fromEntries(data),

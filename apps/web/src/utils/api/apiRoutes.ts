@@ -4,6 +4,7 @@ export const routes = {
     signIn: "/auth/sign-in",
     recoverPassword: "/auth/password/recover",
     resetPassword: "/auth/password/reset",
+    verifyToken: "/auth/verify-token",
   },
   GET: {
     profile: "/auth/profile",
