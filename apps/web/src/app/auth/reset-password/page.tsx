@@ -31,13 +31,13 @@ export default async function ResetPasswordPage({
 
   if (!code) {
     return (
-      <div className="flex flex-col size-full items-center justify-center">
+      <div className="flex size-full flex-col items-center justify-center">
         <h1 className="text-xl font-bold">Invalid reset password link</h1>
-        <p className="text-sm font-medium text-foreground/60 mt-2">
+        <p className="mt-2 text-sm font-medium text-foreground/60">
           Please request a new password reset link{" "}
           <Link href="/auth/forgot-password">here</Link>.
         </p>
-        <p className="text-sm font-medium text-foreground/60 mt-2">
+        <p className="mt-2 text-sm font-medium text-foreground/60">
           Or, you can{" "}
           <Link className="w-fit" size="sm" href="/auth/sign-in">
             sign in instead
