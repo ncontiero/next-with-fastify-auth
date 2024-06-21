@@ -2,7 +2,7 @@ import type { FastifyInstance } from "fastify";
 
 import { signIn } from "./sign-in";
 import { signUp } from "./sign-up";
-import { getProfile } from "./get-profile";
+import { profileRoutes } from "./profile";
 import { passwordRoutes } from "./password";
 import { verifyToken } from "./verify-token";
 
@@ -15,7 +15,7 @@ export async function authRoutes(app: FastifyInstance) {
 
   app.register(signIn, opts);
   app.register(signUp, opts);
-  app.register(getProfile, opts);
+  app.register(profileRoutes, opts);
   app.register(passwordRoutes, opts);
   app.register(verifyToken, opts);
 }
