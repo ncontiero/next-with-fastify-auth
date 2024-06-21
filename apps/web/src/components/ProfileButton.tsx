@@ -15,7 +15,7 @@ interface ProfileButtonProps {
 
 function getInitials(name: string): string {
   const nameInitials = name.split(" ").map((word) => word.charAt(0));
-  return `${nameInitials.at(0)}${nameInitials.at(-1)}`;
+  return `${nameInitials.at(0)}${nameInitials.length > 1 ? nameInitials.at(-1) : ""}`;
 }
 
 export function ProfileButton({ user }: ProfileButtonProps) {
