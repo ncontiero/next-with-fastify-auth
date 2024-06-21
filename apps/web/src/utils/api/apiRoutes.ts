@@ -10,7 +10,10 @@ export const routes = {
     profile: "/auth/profile",
   },
   PUT: {},
-  PATCH: {},
+  PATCH: {
+    updateProfile: "/auth/profile",
+    updatePassword: "/auth/password",
+  },
   DELETE: {},
 } as const;
 

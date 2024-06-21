@@ -14,13 +14,11 @@ interface ProfileButtonProps {
 }
 
 function getInitials(name: string): string {
-  const initials = name
+  return name
     .split(" ")
     .map((word) => word.charAt(0).toUpperCase())
     .slice(0, 2)
     .join("");
-
-  return initials;
 }
 
 export function ProfileButton({ user }: ProfileButtonProps) {
@@ -41,9 +39,9 @@ export function ProfileButton({ user }: ProfileButtonProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem asChild className="p-2">
-          <a href="/profile">
+          <a href="/settings">
             <User className="mr-2 size-4" />
-            Profile
+            Settings
           </a>
         </DropdownMenuItem>
         <DropdownMenuItem asChild className="p-2">
