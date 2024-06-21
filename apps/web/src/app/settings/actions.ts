@@ -5,18 +5,18 @@ import { z } from "zod";
 import { api } from "@/utils/api";
 
 const updateProfileSchema = z.object({
-  name: z.string().nullable(),
+  name: z.string().optional(),
   email: z
     .string()
     .email({ message: "Please, provide a valid e-mail address." }),
   avatarUrl: z
     .string()
-    .transform((value) => (value === "" ? null : value))
+    .transform((value) => (value === "" ? undefined : value))
     .refine(
-      (v) => v === null || z.string().url().safeParse(v).success,
+      (v) => v === undefined || z.string().url().safeParse(v).success,
       "Please, provide a valid URL.",
     )
-    .nullable(),
+    .optional(),
 });
 
 const updatePasswordSchema = z.object({

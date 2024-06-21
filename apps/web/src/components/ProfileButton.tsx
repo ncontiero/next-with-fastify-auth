@@ -28,9 +28,7 @@ export function ProfileButton({ user }: ProfileButtonProps) {
         </div>
         <Avatar className="size-8">
           {user.avatarUrl ? <AvatarImage src={user.avatarUrl} /> : null}
-          {user.name ? (
-            <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
-          ) : null}
+          <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
         </Avatar>
         <ChevronDown className="size-4 text-muted-foreground" />
       </DropdownMenuTrigger>

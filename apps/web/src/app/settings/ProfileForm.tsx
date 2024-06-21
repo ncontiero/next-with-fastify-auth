@@ -42,12 +42,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
 
       <div className="flex flex-col gap-2">
         <Label htmlFor="name">Name</Label>
-        <Input
-          name="name"
-          id="name"
-          type="text"
-          defaultValue={user.name || ""}
-        />
+        <Input name="name" id="name" type="text" defaultValue={user.name} />
 
         {errors?.name ? (
           <p className="text-xs font-medium text-red-500 dark:text-red-400">
