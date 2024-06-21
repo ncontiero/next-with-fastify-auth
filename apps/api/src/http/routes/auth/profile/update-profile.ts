@@ -16,12 +16,12 @@ export async function updateProfile(app: FastifyInstance) {
       {
         schema: {
           body: z.object({
-            name: z.string().nullable(),
+            name: z.string().optional(),
             email: z.string().email(),
-            avatarUrl: z.string().url().nullable(),
+            avatarUrl: z.string().url().optional(),
           }),
           response: {
-            204: z.object({}).nullable(),
+            204: z.null(),
           },
         },
       },
@@ -29,12 +29,6 @@ export async function updateProfile(app: FastifyInstance) {
         const userId = await request.getCurrentUserId();
 
         const user = await prisma.user.findUnique({
-          select: {
-            id: true,
-            name: true,
-            email: true,
-            avatarUrl: true,
-          },
           where: {
             id: userId,
           },
@@ -56,6 +50,7 @@ export async function updateProfile(app: FastifyInstance) {
 
         await prisma.user.update({
           data: {
+            ...user,
             ...request.body,
           },
           where: {
@@ -63,7 +58,7 @@ export async function updateProfile(app: FastifyInstance) {
           },
         });
 
-        return reply.status(204).send(null);
+        return reply.status(204).send();
       },
     );
 }

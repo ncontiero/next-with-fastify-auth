@@ -44,18 +44,11 @@ export async function requestPasswordRecover(app: FastifyInstance) {
         resetPasswordLink.searchParams.set("token_type", tokenType);
 
         // Send e-mail with password recover link
-        const emailInfo = await sendMail({
+        await sendMail({
           to: userFromEmail.email,
           subject: "Password recover",
           html: `<a href="${resetPasswordLink}">Reset password</a>`,
         });
-        // eslint-disable-next-line no-console
-        console.log("Message sent: %s", emailInfo.messageId);
-
-        // eslint-disable-next-line no-console
-        console.log("Password recover token:", code);
-        // eslint-disable-next-line no-console
-        console.log("Password reset link:", resetPasswordLink.toString());
       } catch (error) {
         console.error("Error sending password recover e-mail:", error);
         await prisma.token.delete({ where: { id: code } });
