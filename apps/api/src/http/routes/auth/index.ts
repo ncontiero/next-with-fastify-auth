@@ -5,6 +5,7 @@ import { signUp } from "./sign-up";
 import { profileRoutes } from "./profile";
 import { passwordRoutes } from "./password";
 import { verifyToken } from "./verify-token";
+import { verifyEmail } from "./verify-email";
 
 const AUTH_PREFIX = "/auth";
 
@@ -18,4 +19,5 @@ export async function authRoutes(app: FastifyInstance) {
   app.register(profileRoutes, opts);
   app.register(passwordRoutes, opts);
   app.register(verifyToken, opts);
+  app.register(verifyEmail, opts);
 }

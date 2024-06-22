@@ -31,14 +31,14 @@ export async function requestPasswordRecover(app: FastifyInstance) {
         return reply.status(201).send();
       }
 
-      const { id: code, type: tokenType } = await prisma.token.create({
-        data: {
-          type: "PASSWORD_RECOVER",
-          userId: userFromEmail.id,
-        },
-      });
+      await prisma.$transaction(async (tx) => {
+        const { id: code, type: tokenType } = await tx.token.create({
+          data: {
+            type: "PASSWORD_RECOVER",
+            userId: userFromEmail.id,
+          },
+        });
 
-      try {
         const resetPasswordLink = new URL(env.FRONTEND_TOKEN_CALLBACK_URL);
         resetPasswordLink.searchParams.set("code", code);
         resetPasswordLink.searchParams.set("token_type", tokenType);
@@ -49,11 +49,7 @@ export async function requestPasswordRecover(app: FastifyInstance) {
           subject: "Password recover",
           html: `<a href="${resetPasswordLink}">Reset password</a>`,
         });
-      } catch (error) {
-        console.error("Error sending password recover e-mail:", error);
-        await prisma.token.delete({ where: { id: code } });
-        return reply.status(500).send();
-      }
+      });
 
       return reply.status(201).send();
     },

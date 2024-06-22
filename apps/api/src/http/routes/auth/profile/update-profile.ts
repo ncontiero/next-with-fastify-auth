@@ -5,6 +5,7 @@ import { z } from "zod";
 import { auth } from "@/http/middlewares/auth";
 import { BadRequestError } from "@/http/routes/_errors/bad-request-error";
 import { UnauthorizedError } from "@/http/routes/_errors/unauthorized-error";
+import { emailVerification } from "@/utils/email-verification";
 import { prisma } from "@/lib/prisma";
 
 export async function updateProfile(app: FastifyInstance) {
@@ -48,14 +49,28 @@ export async function updateProfile(app: FastifyInstance) {
           throw new BadRequestError("Email already in use.");
         }
 
-        await prisma.user.update({
-          data: {
-            ...user,
-            ...request.body,
-          },
-          where: {
-            id: userId,
-          },
+        await prisma.$transaction(async (tx) => {
+          if (request.body.email !== user.email) {
+            const { id: code } = await tx.token.create({
+              data: {
+                type: "EMAIL_CONFIRMATION",
+                userId,
+              },
+            });
+
+            await emailVerification(code, request.body.email);
+          }
+          await tx.user.update({
+            data: {
+              ...user,
+              ...request.body,
+              verifiedEmail:
+                request.body.email !== user.email ? false : user.verifiedEmail,
+            },
+            where: {
+              id: userId,
+            },
+          });
         });
 
         return reply.status(204).send();

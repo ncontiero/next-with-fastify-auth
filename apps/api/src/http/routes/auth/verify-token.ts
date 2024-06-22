@@ -31,7 +31,7 @@ export async function verifyToken(app: FastifyInstance) {
         throw new BadRequestError("Invalid token");
       }
 
-      reply.status(204).send();
+      return reply.status(204).send();
     },
   );
 }

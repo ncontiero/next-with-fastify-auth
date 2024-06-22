@@ -6,7 +6,9 @@ const envVariables = z.object({
     .enum(["development", "test", "production"])
     .default("development"),
   DATABASE_URL: z.string().url(),
+  BASE_URL: z.string().url().default("http://localhost:3333"),
 
+  FRONTEND_BASE_URL: z.string().url().default("http://localhost:3000"),
   FRONTEND_TOKEN_CALLBACK_URL: z.string().url(),
   PORT: z.coerce.number().default(3333),
   JWT_SECRET: z.string(),
