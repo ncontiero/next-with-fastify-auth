@@ -5,6 +5,7 @@ export const routes = {
     recoverPassword: "/auth/password/recover",
     resetPassword: "/auth/password/reset",
     verifyToken: "/auth/verify/token",
+    requestEmailVerification: "/auth/verify/email",
   },
   GET: {
     profile: "/auth/profile",

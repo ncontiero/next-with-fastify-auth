@@ -5,6 +5,7 @@ import type { User } from "@/utils/types";
 import { toast } from "react-toastify";
 import { AlertTriangle, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useCallback, useState } from "react";
 import { useFormState } from "@/hooks/useFormState";
 import { Label } from "@/components/ui/Label";
 import { Input } from "@/components/ui/Input";
@@ -12,6 +13,7 @@ import { Button } from "@/components/ui/Button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/Alert";
 
 import { Badge } from "@/components/ui/Badge";
+import { api } from "@/utils/api";
 import { updateProfileAction } from "./actions";
 
 interface ProfileFormProps {
@@ -19,6 +21,8 @@ interface ProfileFormProps {
 }
 
 export function ProfileForm({ user }: ProfileFormProps) {
+  const [isSendingEmailVerification, setIsSendingEmailVerification] =
+    useState(false);
   const router = useRouter();
 
   const [{ errors, message, success }, handleSubmit, isPending] = useFormState(
@@ -29,6 +33,21 @@ export function ProfileForm({ user }: ProfileFormProps) {
       router.refresh();
     },
   );
+
+  const requestEmailVerification = useCallback(async () => {
+    setIsSendingEmailVerification(true);
+    const { ok } = await api.post("requestEmailVerification", {
+      throwError: false,
+    });
+    if (!ok) {
+      toast.error(
+        "Failed to request email verification. Please try again later.",
+      );
+      setIsSendingEmailVerification(false);
+    }
+    toast.success("Email verification link sent to your email address.");
+    setIsSendingEmailVerification(false);
+  }, []);
 
   return (
     <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
@@ -83,7 +102,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
         ) : null}
       </div>
 
-      <div className="mt-2">
+      <div className="mt-2 flex items-center gap-2">
         <Button type="submit">
           {isPending ? (
             <Loader2 className="size-4 animate-spin" />
@@ -91,6 +110,20 @@ export function ProfileForm({ user }: ProfileFormProps) {
             "Save changes"
           )}
         </Button>
+        {!user.verifiedEmail && (
+          <Button
+            type="button"
+            disabled={isSendingEmailVerification}
+            className="gap-2"
+            onClick={() => requestEmailVerification()}
+          >
+            {isSendingEmailVerification ? (
+              <Loader2 className="size-4 animate-spin" />
+            ) : null}
+            {isSendingEmailVerification ? "Sending" : "Resend"} verification
+            email
+          </Button>
+        )}
       </div>
     </form>
   );
