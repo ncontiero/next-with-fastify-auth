@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/Alert";
 
+import { Badge } from "@/components/ui/Badge";
 import { updateProfileAction } from "./actions";
 
 interface ProfileFormProps {
@@ -52,7 +53,12 @@ export function ProfileForm({ user }: ProfileFormProps) {
         ) : null}
       </div>
       <div className="flex flex-col gap-2">
-        <Label htmlFor="email">Email</Label>
+        <div className="flex gap-2 items-center">
+          <Label htmlFor="email">Email</Label>
+          <Badge variant={user.verifiedEmail ? "secondary" : "destructive"}>
+            {user.verifiedEmail ? "Verified" : "Unverified"}
+          </Badge>
+        </div>
         <Input name="email" id="email" type="email" defaultValue={user.email} />
 
         {errors?.email ? (
