@@ -10,13 +10,18 @@ export function SearchParamsHandler() {
   const params = useSearchParams();
 
   const errorMessage = params.get("error_message");
+  const successMessage = params.get("success_message");
 
   useEffect(() => {
     if (errorMessage) {
       router.push(path);
       toast.error(errorMessage);
     }
-  }, [errorMessage, path, router]);
+    if (successMessage) {
+      router.push(path);
+      toast.success(successMessage);
+    }
+  }, [errorMessage, path, router, successMessage]);
 
   return null;
 }

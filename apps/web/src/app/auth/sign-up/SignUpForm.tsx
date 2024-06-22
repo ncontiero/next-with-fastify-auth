@@ -19,7 +19,7 @@ export function SignUpForm() {
   const [{ errors, message, success }, handleSubmit, isPending] = useFormState(
     signUpAction,
     () => {
-      toast.success("Account created successfully!");
+      toast.success("Account created successfully! Verify your email.");
       router.push("/");
     },
   );

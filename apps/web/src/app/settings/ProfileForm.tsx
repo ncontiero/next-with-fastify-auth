@@ -22,8 +22,9 @@ export function ProfileForm({ user }: ProfileFormProps) {
 
   const [{ errors, message, success }, handleSubmit, isPending] = useFormState(
     (data) => updateProfileAction(data, user),
-    () => {
-      toast.success("Profile updated successfully!");
+    (data) => {
+      const message = `Profile updated successfully!${data.get("email") !== user.email ? " Verify your new email address." : ""}`;
+      toast.success(message);
       router.refresh();
     },
   );
