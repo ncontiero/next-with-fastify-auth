@@ -17,9 +17,9 @@ export default async function ProfilePage() {
   if (!isAuthenticated()) {
     redirect("/auth/sign-in");
   }
-  const { data: user } = await api.get<User>("profile");
+  const { data: user } = await api.get<User>("profile", { throwError: false });
   if (!user) {
-    redirect("/auth/sign-in");
+    redirect("/api/auth/sign-out");
   }
 
   return (
