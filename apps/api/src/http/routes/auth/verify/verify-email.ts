@@ -7,7 +7,7 @@ import { env } from "@/env";
 
 export async function verifyEmail(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().get(
-    "/verify-email",
+    "/email",
     {
       schema: {
         querystring: z.object({

@@ -3,7 +3,7 @@ import { env } from "@/env";
 
 export async function emailVerification(code: string, email: string) {
   const verificationLink = new URL(env.BASE_URL);
-  verificationLink.pathname = "/auth/verify-email";
+  verificationLink.pathname = "/auth/verify/email";
   verificationLink.searchParams.set("code", code);
 
   // Send e-mail with email verification link

@@ -7,7 +7,7 @@ import { prisma } from "@/lib/prisma";
 
 export async function verifyToken(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
-    "/verify-token",
+    "/token",
     {
       schema: {
         body: z.object({
