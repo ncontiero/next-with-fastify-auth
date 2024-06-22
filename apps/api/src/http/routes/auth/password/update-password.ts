@@ -37,6 +37,9 @@ export async function updatePassword(app: FastifyInstance) {
         if (!user) {
           throw new UnauthorizedError("User not found");
         }
+        if (!user.verifiedEmail) {
+          throw new UnauthorizedError("E-mail not verified");
+        }
 
         const isPasswordValid = await compare(
           current_password,

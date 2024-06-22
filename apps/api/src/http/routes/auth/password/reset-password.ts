@@ -25,11 +25,16 @@ export async function resetPassword(app: FastifyInstance) {
 
       const tokenFromCode = await prisma.token.findUnique({
         where: { id: code },
-        include: { user: { select: { passwordHash: true } } },
+        include: {
+          user: { select: { passwordHash: true, verifiedEmail: true } },
+        },
       });
 
       if (!tokenFromCode) {
         throw new UnauthorizedError();
+      }
+      if (!tokenFromCode.user.verifiedEmail) {
+        throw new UnauthorizedError("E-mail not verified.");
       }
 
       const passwordHash = await hash(password, 6);

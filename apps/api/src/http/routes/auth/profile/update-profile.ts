@@ -38,6 +38,9 @@ export async function updateProfile(app: FastifyInstance) {
         if (!user) {
           throw new UnauthorizedError("User not found.");
         }
+        if (!user.verifiedEmail) {
+          throw new UnauthorizedError("E-mail not verified.");
+        }
 
         const userFromEmail = await prisma.user.findUnique({
           where: {
