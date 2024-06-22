@@ -20,6 +20,7 @@ export async function getProfile(app: FastifyInstance) {
               name: z.string(),
               email: z.string().email(),
               avatarUrl: z.string().url().nullable(),
+              verifiedEmail: z.boolean(),
             }),
           },
         },
@@ -33,6 +34,7 @@ export async function getProfile(app: FastifyInstance) {
             name: true,
             email: true,
             avatarUrl: true,
+            verifiedEmail: true,
           },
           where: {
             id: userId,
