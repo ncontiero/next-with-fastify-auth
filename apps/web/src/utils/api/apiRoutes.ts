@@ -15,7 +15,9 @@ export const routes = {
     updateProfile: "/auth/profile",
     updatePassword: "/auth/password",
   },
-  DELETE: {},
+  DELETE: {
+    deleteProfile: "/auth/profile",
+  },
 } as const;
 
 type Routes = typeof routes;

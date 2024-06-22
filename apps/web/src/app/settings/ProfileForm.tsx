@@ -23,6 +23,7 @@ interface ProfileFormProps {
 export function ProfileForm({ user }: ProfileFormProps) {
   const [isSendingEmailVerification, setIsSendingEmailVerification] =
     useState(false);
+  const [isDeletingProfile, setIsDeletingProfile] = useState(false);
   const router = useRouter();
 
   const [{ errors, message, success }, handleSubmit, isPending] = useFormState(
@@ -48,6 +49,21 @@ export function ProfileForm({ user }: ProfileFormProps) {
     toast.success("Email verification link sent to your email address.");
     setIsSendingEmailVerification(false);
   }, []);
+
+  const deleteProfile = useCallback(async () => {
+    setIsDeletingProfile(true);
+    const { ok } = await api.delete("deleteProfile", {
+      throwError: false,
+    });
+    if (!ok) {
+      toast.error("Failed to delete profile. Please try again later.");
+      setIsDeletingProfile(false);
+    }
+    toast.success("Profile deleted successfully. Goodbye!");
+    setIsDeletingProfile(false);
+    router.push("/api/auth/sign-out");
+    router.refresh();
+  }, [router]);
 
   return (
     <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
@@ -110,7 +126,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
             "Save changes"
           )}
         </Button>
-        {!user.verifiedEmail && (
+        {!user.verifiedEmail ? (
           <Button
             type="button"
             disabled={isSendingEmailVerification}
@@ -122,6 +138,18 @@ export function ProfileForm({ user }: ProfileFormProps) {
             ) : null}
             {isSendingEmailVerification ? "Sending" : "Resend"} verification
             email
+          </Button>
+        ) : (
+          <Button
+            type="button"
+            variant="destructive"
+            className="gap-2"
+            onClick={() => deleteProfile()}
+          >
+            {isDeletingProfile ? (
+              <Loader2 className="size-4 animate-spin" />
+            ) : null}
+            {isDeletingProfile ? "Deleting" : "Delete"} profile
           </Button>
         )}
       </div>
