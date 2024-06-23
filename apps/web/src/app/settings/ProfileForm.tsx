@@ -87,7 +87,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
         ) : null}
       </div>
       <div className="flex flex-col gap-2">
-        <div className="flex gap-2 items-center">
+        <div className="flex items-center gap-2">
           <Label htmlFor="email">Email</Label>
           <Badge variant={user.verifiedEmail ? "secondary" : "destructive"}>
             {user.verifiedEmail ? "Verified" : "Unverified"}
