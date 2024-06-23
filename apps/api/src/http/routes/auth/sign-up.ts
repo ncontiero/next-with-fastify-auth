@@ -39,25 +39,23 @@ export async function signUp(app: FastifyInstance) {
 
       const passwordHash = await hash(password, 6);
 
-      const { user } = await prisma.$transaction(async (tx) => {
-        const user = await tx.user.create({
-          data: {
-            name,
-            email,
-            passwordHash,
-          },
-        });
+      const user = await prisma.user.create({
+        data: {
+          name,
+          email,
+          passwordHash,
+        },
+      });
+
+      await prisma.$transaction(async (tx) => {
         const { id: code } = await tx.token.create({
           data: {
             type: "EMAIL_CONFIRMATION",
             userId: user.id,
           },
         });
-
         // Send e-mail with email verification link
         await emailVerification(code, user.email);
-
-        return { user };
       });
 
       const token = await reply.jwtSign(
