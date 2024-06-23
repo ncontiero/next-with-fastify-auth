@@ -25,7 +25,7 @@ export const passwordRecoverWorker = new Worker(
           type: "PASSWORD_RECOVER",
         },
       });
-      await passwordRecovery(token.id, user);
+      await passwordRecovery(token, user);
     });
   },
   defaultWorkerOpts,

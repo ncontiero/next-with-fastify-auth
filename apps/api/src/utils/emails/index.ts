@@ -1,4 +1,4 @@
-import type { User } from "@prisma/client";
+import type { Token, User } from "@prisma/client";
 import fs from "node:fs/promises";
 import path from "node:path";
 
@@ -40,10 +40,10 @@ export async function emailVerification(code: string, user: User) {
   });
 }
 
-export async function passwordRecovery(code: string, user: User) {
-  const recoveryLink = new URL(env.BASE_URL);
-  recoveryLink.pathname = "/auth/recover";
-  recoveryLink.searchParams.set("code", code);
+export async function passwordRecovery(token: Token, user: User) {
+  const recoveryLink = new URL(env.FRONTEND_TOKEN_CALLBACK_URL);
+  recoveryLink.searchParams.set("code", token.id);
+  recoveryLink.searchParams.set("token_type", token.type);
 
   const template = await readHTMLTemplate("password-recovery");
   const html = insertContext(template.toString(), {
