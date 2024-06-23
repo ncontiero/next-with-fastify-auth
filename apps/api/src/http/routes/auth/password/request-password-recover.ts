@@ -4,7 +4,7 @@ import { z } from "zod";
 
 import { UnauthorizedError } from "@/http/routes/_errors/unauthorized-error";
 import { prisma } from "@/lib/prisma";
-import { passwordRecoverQueue } from "@/utils/queues";
+import { sendPasswordRecoveryEmailQueue } from "@/utils/queues";
 
 export async function requestPasswordRecover(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
@@ -34,7 +34,7 @@ export async function requestPasswordRecover(app: FastifyInstance) {
         throw new UnauthorizedError("E-mail not verified.");
       }
 
-      await passwordRecoverQueue.add("password-recover", {
+      await sendPasswordRecoveryEmailQueue.add("password-recover", {
         user: userFromEmail,
       });
 

@@ -3,35 +3,35 @@ import { type Job, Queue, QueueEvents, Worker } from "bullmq";
 
 import { prisma } from "@/lib/prisma";
 import { logger } from "../logger";
-import { sendEmailVerification } from "../emails";
 import { genericErrorHandler } from "../error-handler";
+import { sendPasswordRecoveryEmail } from "../emails";
 import { defaultQueueOpts, defaultWorkerOpts } from "./configs";
 
-export const EMAIL_VERIFICATION_NAME = "email-verification";
+export const SEND_PASSWORD_RECOVERY_NAME = "password-recover";
 
-export const emailVerificationQueue = new Queue(
-  EMAIL_VERIFICATION_NAME,
+export const sendPasswordRecoveryEmailQueue = new Queue(
+  SEND_PASSWORD_RECOVERY_NAME,
   defaultQueueOpts,
 );
 
-type EmailVerificationJobProps = Job<{ user: User }, any, string>;
-export const emailVerificationWorker = new Worker(
-  EMAIL_VERIFICATION_NAME,
-  async ({ data: { user } }: EmailVerificationJobProps) => {
+type SendPasswordRecoveryEmailJobProps = Job<{ user: User }, any, string>;
+export const sendPasswordRecoverYEmailWorker = new Worker(
+  SEND_PASSWORD_RECOVERY_NAME,
+  async ({ data: { user } }: SendPasswordRecoveryEmailJobProps) => {
     await prisma.$transaction(async (tx) => {
       const token = await tx.token.create({
         data: {
           userId: user.id,
-          type: "EMAIL_CONFIRMATION",
+          type: "PASSWORD_RECOVER",
         },
       });
-      await sendEmailVerification(token.id, user);
+      await sendPasswordRecoveryEmail(token, user);
     });
   },
   defaultWorkerOpts,
 );
 
-const queueEvents = new QueueEvents(EMAIL_VERIFICATION_NAME, {
+const queueEvents = new QueueEvents(SEND_PASSWORD_RECOVERY_NAME, {
   connection: defaultQueueOpts.connection,
 });
 

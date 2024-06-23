@@ -5,7 +5,7 @@ import { z } from "zod";
 import { UnauthorizedError } from "@/http/routes/_errors/unauthorized-error";
 import { auth } from "@/http/middlewares/auth";
 import { prisma } from "@/lib/prisma";
-import { emailVerificationQueue } from "@/utils/queues";
+import { sendEmailVerificationQueue } from "@/utils/queues";
 
 export async function requestEmailVerification(app: FastifyInstance) {
   app
@@ -35,7 +35,7 @@ export async function requestEmailVerification(app: FastifyInstance) {
           throw new UnauthorizedError("Email already verified");
         }
 
-        await emailVerificationQueue.add("email-verification", {
+        await sendEmailVerificationQueue.add("email-verification", {
           user,
         });
 

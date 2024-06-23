@@ -6,7 +6,7 @@ import { auth } from "@/http/middlewares/auth";
 import { BadRequestError } from "@/http/routes/_errors/bad-request-error";
 import { UnauthorizedError } from "@/http/routes/_errors/unauthorized-error";
 import { prisma } from "@/lib/prisma";
-import { emailVerificationQueue } from "@/utils/queues";
+import { sendEmailVerificationQueue } from "@/utils/queues";
 
 export async function updateProfile(app: FastifyInstance) {
   app
@@ -53,7 +53,7 @@ export async function updateProfile(app: FastifyInstance) {
         }
 
         if (request.body.email !== user.email) {
-          await emailVerificationQueue.add("email-verification", {
+          await sendEmailVerificationQueue.add("email-verification", {
             user,
           });
         }

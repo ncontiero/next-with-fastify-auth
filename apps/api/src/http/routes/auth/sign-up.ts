@@ -5,7 +5,7 @@ import { z } from "zod";
 
 import { BadRequestError } from "@/http/routes/_errors/bad-request-error";
 import { prisma } from "@/lib/prisma";
-import { emailVerificationQueue, sendWelcomeEmailQueue } from "@/utils/queues";
+import { sendWelcomeEmailQueue } from "@/utils/queues";
 
 export async function signUp(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(

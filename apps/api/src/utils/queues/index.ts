@@ -1,11 +1,11 @@
 import {
-  emailVerificationQueue,
-  emailVerificationWorker,
-} from "./email-verification";
+  sendEmailVerificationQueue,
+  sendEmailVerificationWorker,
+} from "./send-email-verification";
 import {
-  passwordRecoverQueue,
-  passwordRecoverWorker,
-} from "./password-recover";
+  sendPasswordRecoverYEmailWorker,
+  sendPasswordRecoveryEmailQueue,
+} from "./send-password-recovery-email";
 import {
   sendWelcomeEmailQueue,
   sendWelcomeEmailWorker,
@@ -13,8 +13,9 @@ import {
 
 const gracefulShutdown = async (signal: string) => {
   console.warn(`Received ${signal}, closing server...`);
-  await emailVerificationWorker.close();
-  await passwordRecoverWorker.close();
+  await sendEmailVerificationWorker.close();
+  await sendPasswordRecoverYEmailWorker.close();
+  await sendWelcomeEmailWorker.close();
   process.exit(0);
 };
 
@@ -22,10 +23,10 @@ process.on("SIGINT", () => gracefulShutdown("SIGINT"));
 process.on("SIGTERM", () => gracefulShutdown("SIGTERM"));
 
 export {
-  emailVerificationQueue,
-  emailVerificationWorker,
-  passwordRecoverQueue,
-  passwordRecoverWorker,
+  sendEmailVerificationQueue,
+  sendEmailVerificationWorker,
+  sendPasswordRecoveryEmailQueue,
+  sendPasswordRecoverYEmailWorker,
   sendWelcomeEmailQueue,
   sendWelcomeEmailWorker,
 };
