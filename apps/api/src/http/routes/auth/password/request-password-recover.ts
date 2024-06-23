@@ -35,8 +35,7 @@ export async function requestPasswordRecover(app: FastifyInstance) {
       }
 
       await passwordRecoverQueue.add("password-recover", {
-        userId: userFromEmail.id,
-        email,
+        user: userFromEmail,
       });
 
       return reply.status(201).send();

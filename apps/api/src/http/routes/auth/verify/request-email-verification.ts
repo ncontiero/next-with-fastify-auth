@@ -36,8 +36,7 @@ export async function requestEmailVerification(app: FastifyInstance) {
         }
 
         await emailVerificationQueue.add("email-verification", {
-          userId: user.id,
-          email: user.email,
+          user,
         });
 
         return reply.status(204).send();

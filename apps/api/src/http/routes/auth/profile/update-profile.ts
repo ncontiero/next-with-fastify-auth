@@ -52,24 +52,21 @@ export async function updateProfile(app: FastifyInstance) {
           throw new BadRequestError("Email already in use.");
         }
 
-        await prisma.$transaction(async (tx) => {
-          if (request.body.email !== user.email) {
-            await emailVerificationQueue.add("email-verification", {
-              userId: user.id,
-              email: user.email,
-            });
-          }
-          await tx.user.update({
-            data: {
-              ...user,
-              ...request.body,
-              verifiedEmail:
-                request.body.email !== user.email ? false : user.verifiedEmail,
-            },
-            where: {
-              id: userId,
-            },
+        if (request.body.email !== user.email) {
+          await emailVerificationQueue.add("email-verification", {
+            user,
           });
+        }
+        await prisma.user.update({
+          data: {
+            ...user,
+            ...request.body,
+            verifiedEmail:
+              request.body.email !== user.email ? false : user.verifiedEmail,
+          },
+          where: {
+            id: userId,
+          },
         });
 
         return reply.status(204).send();

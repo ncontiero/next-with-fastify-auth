@@ -48,8 +48,7 @@ export async function signUp(app: FastifyInstance) {
       });
 
       await emailVerificationQueue.add("email-verification", {
-        userId: user.id,
-        email: user.email,
+        user,
       });
 
       const token = await reply.jwtSign(
