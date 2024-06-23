@@ -58,5 +58,9 @@ export async function signUpAction(data: FormData) {
     };
   }
 
-  return { success: true, message: null, errors: null };
+  return {
+    success: true,
+    message: "Account created successfully! Verify your email.",
+    errors: null,
+  };
 }

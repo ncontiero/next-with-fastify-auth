@@ -37,5 +37,9 @@ export async function recoverPasswordAction(data: FormData) {
     };
   }
 
-  return { success: true, message: null, errors: null };
+  return {
+    success: true,
+    message: "Check your email for further instructions.",
+    errors: null,
+  };
 }

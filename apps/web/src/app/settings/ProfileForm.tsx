@@ -28,8 +28,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
 
   const [{ errors, message, success }, handleSubmit, isPending] = useFormState(
     (data) => updateProfileAction(data, user),
-    (data) => {
-      const message = `Profile updated successfully!${data.get("email") !== user.email ? " Verify your new email address." : ""}`;
+    (message) => {
       toast.success(message);
       router.refresh();
     },
@@ -119,7 +118,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
       </div>
 
       <div className="mt-2 flex items-center gap-2">
-        <Button type="submit">
+        <Button type="submit" disabled={isPending}>
           {isPending ? (
             <Loader2 className="size-4 animate-spin" />
           ) : (

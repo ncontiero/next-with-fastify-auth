@@ -33,12 +33,14 @@ export async function updateProfileAction(data: FormData, user: User) {
     const errors = result.error.flatten().fieldErrors;
     return { success: false, message: null, errors };
   }
+
+  const isSameEmail = result.data.email === user.email;
   if (
-    result.data.email === user.email &&
+    isSameEmail &&
     result.data.name === user.name &&
-    result.data.avatarUrl === user.avatarUrl
+    result.data.avatarUrl === (user.avatarUrl ?? undefined)
   ) {
-    return { success: true, message: null, errors: null };
+    return { success: true, message: "Nothing to update.", errors: null };
   }
 
   try {
@@ -60,7 +62,11 @@ export async function updateProfileAction(data: FormData, user: User) {
     };
   }
 
-  return { success: true, message: null, errors: null };
+  return {
+    success: true,
+    message: `Profile updated successfully.${isSameEmail ? "" : " Verify your new email address."}`,
+    errors: null,
+  };
 }
 
 export async function updatePasswordAction(data: FormData) {
@@ -90,5 +96,9 @@ export async function updatePasswordAction(data: FormData) {
     };
   }
 
-  return { success: true, message: null, errors: null };
+  return {
+    success: true,
+    message: "Password updated successfully!",
+    errors: null,
+  };
 }

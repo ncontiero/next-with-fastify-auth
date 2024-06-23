@@ -18,8 +18,8 @@ export function SignUpForm() {
 
   const [{ errors, message, success }, handleSubmit, isPending] = useFormState(
     signUpAction,
-    () => {
-      toast.success("Account created successfully! Verify your email.");
+    (message) => {
+      toast.success(message);
       router.push("/");
     },
   );
@@ -91,7 +91,7 @@ export function SignUpForm() {
         ) : null}
       </div>
 
-      <Button type="submit" className="mt-2">
+      <Button type="submit" className="mt-2" disabled={isPending}>
         {isPending ? (
           <Loader2 className="size-4 animate-spin" />
         ) : (

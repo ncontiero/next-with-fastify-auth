@@ -13,8 +13,8 @@ import { updatePasswordAction } from "./actions";
 export function PasswordForm() {
   const [{ errors, message, success }, handleSubmit, isPending] = useFormState(
     updatePasswordAction,
-    () => {
-      toast.success("Password updated successfully!");
+    (message) => {
+      toast.success(message);
     },
   );
 
@@ -61,7 +61,7 @@ export function PasswordForm() {
         ) : null}
       </div>
       <div className="mt-2">
-        <Button type="submit">
+        <Button type="submit" disabled={isPending}>
           {isPending ? (
             <Loader2 className="size-4 animate-spin" />
           ) : (

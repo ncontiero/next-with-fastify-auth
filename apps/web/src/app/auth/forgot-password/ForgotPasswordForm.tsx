@@ -15,8 +15,8 @@ import { recoverPasswordAction } from "./actions";
 export function ForgotPasswordForm() {
   const [{ errors, message, success }, handleSubmit, isPending] = useFormState(
     recoverPasswordAction,
-    () => {
-      toast.success("Check your email for further instructions.");
+    (message) => {
+      toast.success(message);
     },
   );
 
@@ -51,7 +51,7 @@ export function ForgotPasswordForm() {
         ) : null}
       </div>
 
-      <Button className="mt-2">
+      <Button className="mt-2" disabled={isPending}>
         {isPending ? (
           <Loader2 className="size-4 animate-spin" />
         ) : (

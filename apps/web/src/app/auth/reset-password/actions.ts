@@ -47,5 +47,9 @@ export async function resetPasswordAction(data: FormData, code: string) {
     };
   }
 
-  return { success: true, message: null, errors: null };
+  return {
+    success: true,
+    message: "Password changed successfully! You can now sign in.",
+    errors: null,
+  };
 }

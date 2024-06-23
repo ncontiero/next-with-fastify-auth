@@ -22,9 +22,9 @@ export function ResetPasswordForm({ code }: ResetPasswordFormProps) {
 
   const [{ errors, message, success }, handleSubmit, isPending] = useFormState(
     (data) => resetPasswordAction(data, code),
-    () => {
+    (message) => {
       router.push("/auth/sign-in");
-      toast.success("Password changed successfully! You can now sign in.");
+      toast.success(message);
     },
   );
 
@@ -73,7 +73,7 @@ export function ResetPasswordForm({ code }: ResetPasswordFormProps) {
         ) : null}
       </div>
 
-      <Button className="mt-2">
+      <Button className="mt-2" disabled={isPending}>
         {isPending ? (
           <Loader2 className="size-4 animate-spin" />
         ) : (
