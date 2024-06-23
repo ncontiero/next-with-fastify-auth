@@ -4,8 +4,8 @@ import { hash } from "bcryptjs";
 import { z } from "zod";
 
 import { BadRequestError } from "@/http/routes/_errors/bad-request-error";
-import { emailVerification } from "@/utils/email-verification";
 import { prisma } from "@/lib/prisma";
+import { emailVerificationQueue } from "@/utils/queues";
 
 export async function signUp(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
@@ -47,15 +47,9 @@ export async function signUp(app: FastifyInstance) {
         },
       });
 
-      await prisma.$transaction(async (tx) => {
-        const { id: code } = await tx.token.create({
-          data: {
-            type: "EMAIL_CONFIRMATION",
-            userId: user.id,
-          },
-        });
-        // Send e-mail with email verification link
-        await emailVerification(code, user.email);
+      await emailVerificationQueue.add("email-verification", {
+        userId: user.id,
+        email: user.email,
       });
 
       const token = await reply.jwtSign(

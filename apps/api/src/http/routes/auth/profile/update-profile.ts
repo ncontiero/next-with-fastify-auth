@@ -5,8 +5,8 @@ import { z } from "zod";
 import { auth } from "@/http/middlewares/auth";
 import { BadRequestError } from "@/http/routes/_errors/bad-request-error";
 import { UnauthorizedError } from "@/http/routes/_errors/unauthorized-error";
-import { emailVerification } from "@/utils/email-verification";
 import { prisma } from "@/lib/prisma";
+import { emailVerificationQueue } from "@/utils/queues";
 
 export async function updateProfile(app: FastifyInstance) {
   app
@@ -54,14 +54,10 @@ export async function updateProfile(app: FastifyInstance) {
 
         await prisma.$transaction(async (tx) => {
           if (request.body.email !== user.email) {
-            const { id: code } = await tx.token.create({
-              data: {
-                type: "EMAIL_CONFIRMATION",
-                userId,
-              },
+            await emailVerificationQueue.add("email-verification", {
+              userId: user.id,
+              email: user.email,
             });
-
-            await emailVerification(code, request.body.email);
           }
           await tx.user.update({
             data: {

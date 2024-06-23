@@ -45,6 +45,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
         "Failed to request email verification. Please try again later.",
       );
       setIsSendingEmailVerification(false);
+      return;
     }
     toast.success("Email verification link sent to your email address.");
     setIsSendingEmailVerification(false);

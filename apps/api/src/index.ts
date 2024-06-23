@@ -9,8 +9,8 @@ import fastifyJwt from "@fastify/jwt";
 
 import { env } from "@/env";
 import { errorHandler } from "@/http/error-handler";
-
 import { authRoutes } from "@/http/routes/auth";
+import { logger } from "@/utils/logger";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -28,6 +28,5 @@ app.register(authRoutes);
 
 app.listen({ port: env.PORT, host: "0.0.0.0" }, (err, address) => {
   if (err) throw err;
-  // eslint-disable-next-line no-console
-  console.log(`Server listening on ${address}`);
+  logger.info(`Server listening on ${address}`);
 });

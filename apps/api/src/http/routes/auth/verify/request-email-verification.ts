@@ -5,7 +5,7 @@ import { z } from "zod";
 import { UnauthorizedError } from "@/http/routes/_errors/unauthorized-error";
 import { auth } from "@/http/middlewares/auth";
 import { prisma } from "@/lib/prisma";
-import { emailVerification } from "@/utils/email-verification";
+import { emailVerificationQueue } from "@/utils/queues";
 
 export async function requestEmailVerification(app: FastifyInstance) {
   app
@@ -35,15 +35,9 @@ export async function requestEmailVerification(app: FastifyInstance) {
           throw new UnauthorizedError("Email already verified");
         }
 
-        await prisma.$transaction(async (tx) => {
-          const token = await tx.token.create({
-            data: {
-              userId: user.id,
-              type: "EMAIL_CONFIRMATION",
-            },
-          });
-          await emailVerification(token.id, user.email);
-          return token;
+        await emailVerificationQueue.add("email-verification", {
+          userId: user.id,
+          email: user.email,
         });
 
         return reply.status(204).send();

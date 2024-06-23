@@ -3,9 +3,8 @@ import type { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from "zod";
 
 import { UnauthorizedError } from "@/http/routes/_errors/unauthorized-error";
-import { sendMail } from "@/lib/nodemailer";
 import { prisma } from "@/lib/prisma";
-import { env } from "@/env";
+import { passwordRecoverQueue } from "@/utils/queues";
 
 export async function requestPasswordRecover(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
@@ -35,24 +34,9 @@ export async function requestPasswordRecover(app: FastifyInstance) {
         throw new UnauthorizedError("E-mail not verified.");
       }
 
-      await prisma.$transaction(async (tx) => {
-        const { id: code, type: tokenType } = await tx.token.create({
-          data: {
-            type: "PASSWORD_RECOVER",
-            userId: userFromEmail.id,
-          },
-        });
-
-        const resetPasswordLink = new URL(env.FRONTEND_TOKEN_CALLBACK_URL);
-        resetPasswordLink.searchParams.set("code", code);
-        resetPasswordLink.searchParams.set("token_type", tokenType);
-
-        // Send e-mail with password recover link
-        await sendMail({
-          to: userFromEmail.email,
-          subject: "Password recover",
-          html: `<a href="${resetPasswordLink}">Reset password</a>`,
-        });
+      await passwordRecoverQueue.add("password-recover", {
+        userId: userFromEmail.id,
+        email,
       });
 
       return reply.status(201).send();
