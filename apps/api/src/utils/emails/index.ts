@@ -21,7 +21,7 @@ function insertContext(template: string, context: Record<string, any>) {
   return result;
 }
 
-export async function emailVerification(code: string, user: User) {
+export async function sendEmailVerification(code: string, user: User) {
   const verificationLink = new URL(env.BASE_URL);
   verificationLink.pathname = "/auth/verify/email";
   verificationLink.searchParams.set("code", code);
@@ -40,7 +40,7 @@ export async function emailVerification(code: string, user: User) {
   });
 }
 
-export async function passwordRecovery(token: Token, user: User) {
+export async function sendPasswordRecoveryEmail(token: Token, user: User) {
   const recoveryLink = new URL(env.FRONTEND_TOKEN_CALLBACK_URL);
   recoveryLink.searchParams.set("code", token.id);
   recoveryLink.searchParams.set("token_type", token.type);

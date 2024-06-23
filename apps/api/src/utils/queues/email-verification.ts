@@ -3,7 +3,7 @@ import { type Job, Queue, QueueEvents, Worker } from "bullmq";
 
 import { prisma } from "@/lib/prisma";
 import { logger } from "../logger";
-import { emailVerification } from "../emails";
+import { sendEmailVerification } from "../emails";
 import { genericErrorHandler } from "../error-handler";
 import { defaultQueueOpts, defaultWorkerOpts } from "./configs";
 
@@ -25,7 +25,7 @@ export const emailVerificationWorker = new Worker(
           type: "EMAIL_CONFIRMATION",
         },
       });
-      await emailVerification(token.id, user);
+      await sendEmailVerification(token.id, user);
     });
   },
   defaultWorkerOpts,

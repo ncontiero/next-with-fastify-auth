@@ -4,7 +4,7 @@ import { type Job, Queue, QueueEvents, Worker } from "bullmq";
 import { prisma } from "@/lib/prisma";
 import { logger } from "../logger";
 import { genericErrorHandler } from "../error-handler";
-import { passwordRecovery } from "../emails";
+import { sendPasswordRecoveryEmail } from "../emails";
 import { defaultQueueOpts, defaultWorkerOpts } from "./configs";
 
 export const PASSWORD_RECOVER_NAME = "password-recover";
@@ -25,7 +25,7 @@ export const passwordRecoverWorker = new Worker(
           type: "PASSWORD_RECOVER",
         },
       });
-      await passwordRecovery(token, user);
+      await sendPasswordRecoveryEmail(token, user);
     });
   },
   defaultWorkerOpts,
