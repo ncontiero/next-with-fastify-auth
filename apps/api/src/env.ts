@@ -16,6 +16,7 @@ const envVariables = z.object({
   BASE_URL: z.string().url().default("http://localhost:3333"),
   PORT: z.coerce.number().default(3333),
   JWT_SECRET: z.string(),
+  APP_NAME: z.string().default("NFWA"),
 
   FRONTEND_BASE_URL: z.string().url().default("http://localhost:3000"),
   FRONTEND_TOKEN_CALLBACK_URL: z.string().url(),

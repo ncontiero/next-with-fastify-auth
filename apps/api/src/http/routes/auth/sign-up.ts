@@ -5,7 +5,7 @@ import { z } from "zod";
 
 import { BadRequestError } from "@/http/routes/_errors/bad-request-error";
 import { prisma } from "@/lib/prisma";
-import { emailVerificationQueue } from "@/utils/queues";
+import { emailVerificationQueue, sendWelcomeEmailQueue } from "@/utils/queues";
 
 export async function signUp(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
@@ -47,7 +47,7 @@ export async function signUp(app: FastifyInstance) {
         },
       });
 
-      await emailVerificationQueue.add("email-verification", {
+      await sendWelcomeEmailQueue.add("send-welcome-email", {
         user,
       });
 

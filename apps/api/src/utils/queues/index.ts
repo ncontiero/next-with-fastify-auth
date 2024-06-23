@@ -6,6 +6,10 @@ import {
   passwordRecoverQueue,
   passwordRecoverWorker,
 } from "./password-recover";
+import {
+  sendWelcomeEmailQueue,
+  sendWelcomeEmailWorker,
+} from "./send-welcome-email";
 
 const gracefulShutdown = async (signal: string) => {
   console.warn(`Received ${signal}, closing server...`);
@@ -22,4 +26,6 @@ export {
   emailVerificationWorker,
   passwordRecoverQueue,
   passwordRecoverWorker,
+  sendWelcomeEmailQueue,
+  sendWelcomeEmailWorker,
 };
