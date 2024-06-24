@@ -12,6 +12,6 @@ services:
       - ${POSTGRES_PORT}:5432
 
   redis:
-    image: redis:6
+    image: redis:7
     ports:
       - 6379:6379
