@@ -7,7 +7,11 @@ import { sendMail } from "@/lib/nodemailer";
 
 const HTML_TEMPLATE_FOLDER = path.join(__dirname, "templates");
 
-type Template = "welcome-email" | "email-verification" | "password-recovery";
+type Template =
+  | "welcome-email"
+  | "email-verification"
+  | "password-recovery"
+  | "email-change-notification";
 async function readHTMLTemplate(template: Template) {
   const templatePath = path.join(HTML_TEMPLATE_FOLDER, `${template}.html`);
   return await fs.readFile(templatePath);

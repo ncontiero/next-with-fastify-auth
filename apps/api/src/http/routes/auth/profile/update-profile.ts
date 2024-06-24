@@ -28,6 +28,7 @@ export async function updateProfile(app: FastifyInstance) {
       },
       async (request, reply) => {
         const userId = await request.getCurrentUserId();
+        const newEmail = request.body.email;
 
         const user = await prisma.user.findUnique({
           where: {
@@ -44,7 +45,7 @@ export async function updateProfile(app: FastifyInstance) {
 
         const userFromEmail = await prisma.user.findUnique({
           where: {
-            email: request.body.email,
+            email: newEmail,
             NOT: { id: userId },
           },
         });
@@ -52,22 +53,25 @@ export async function updateProfile(app: FastifyInstance) {
           throw new BadRequestError("Email already in use.");
         }
 
-        if (request.body.email !== user.email) {
-          await sendEmailVerificationQueue.add("email-verification", {
-            user,
-          });
-        }
         await prisma.user.update({
           data: {
             ...user,
             ...request.body,
-            verifiedEmail:
-              request.body.email !== user.email ? false : user.verifiedEmail,
+            verifiedEmail: newEmail !== user.email ? false : user.verifiedEmail,
           },
           where: {
             id: userId,
           },
         });
+
+        if (newEmail !== user.email) {
+          await sendEmailVerificationQueue.add("email-verification", {
+            user: {
+              ...user,
+              email: newEmail,
+            },
+          });
+        }
 
         return reply.status(204).send();
       },
