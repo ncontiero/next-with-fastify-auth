@@ -6,6 +6,7 @@ import { z } from "zod";
 import { auth } from "@/http/middlewares/auth";
 import { UnauthorizedError } from "@/http/routes/_errors/unauthorized-error";
 import { BadRequestError } from "@/http/routes/_errors/bad-request-error";
+import { updatePassword as updatePasswordUtil } from "@/utils/update-password";
 import { prisma } from "@/lib/prisma";
 
 export async function updatePassword(app: FastifyInstance) {
@@ -49,15 +50,7 @@ export async function updatePassword(app: FastifyInstance) {
           throw new BadRequestError("Current password is incorrect");
         }
 
-        const passwordHash = await hash(new_password, 6);
-        await prisma.user.update({
-          where: {
-            id: userId,
-          },
-          data: {
-            passwordHash,
-          },
-        });
+        await updatePasswordUtil(new_password, user);
 
         return reply.status(204).send();
       },

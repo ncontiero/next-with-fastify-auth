@@ -11,7 +11,7 @@ type Template =
   | "welcome-email"
   | "email-verification"
   | "password-recovery"
-  | "email-change-notification";
+  | "password-change-email";
 async function readHTMLTemplate(template: Template) {
   const templatePath = path.join(HTML_TEMPLATE_FOLDER, `${template}.html`);
   return await fs.readFile(templatePath);
@@ -78,6 +78,27 @@ export async function sendPasswordRecoveryEmail(token: Token, user: User) {
   await sendMail({
     to: `"${user.name}" <${user.email}>`,
     subject: `Recover your password on ${env.APP_NAME}!`,
+    html,
+  });
+}
+
+export async function sendPasswordChangeEmail(user: User) {
+  const time = new Intl.DateTimeFormat("en", {
+    dateStyle: "medium",
+    timeStyle: "medium",
+  }).format(new Date());
+
+  const template = await readHTMLTemplate("password-change-email");
+  const html = insertContext(template.toString(), {
+    name: user.name,
+    appName: env.APP_NAME,
+    time,
+  });
+
+  // Send e-mail with password recovery link
+  await sendMail({
+    to: `"${user.name}" <${user.email}>`,
+    subject: `Your password on ${env.APP_NAME} has been changed!`,
     html,
   });
 }
