@@ -36,7 +36,8 @@ const queueEvents = new QueueEvents(SEND_PASSWORD_RECOVERY_NAME, {
 });
 
 queueEvents.on("failed", ({ jobId, failedReason }) => {
-  logger.warn(`Failed job ${jobId}: ${failedReason}`);
-  const err = genericErrorHandler(new Error(failedReason), failedReason);
+  const msg = `Job ${jobId} on queue ${SEND_PASSWORD_RECOVERY_NAME} failed. Reason: ${failedReason}`;
+  logger.warn(msg);
+  const err = genericErrorHandler(new Error(msg), msg);
   logger.error(JSON.stringify(err));
 });
