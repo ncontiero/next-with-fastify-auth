@@ -1,6 +1,5 @@
 import type { FastifyInstance } from "fastify";
 import type { ZodTypeProvider } from "fastify-type-provider-zod";
-import { hash } from "bcryptjs";
 import { z } from "zod";
 
 import { UnauthorizedError } from "@/http/routes/_errors/unauthorized-error";

@@ -1,6 +1,6 @@
 import type { FastifyInstance } from "fastify";
 import type { ZodTypeProvider } from "fastify-type-provider-zod";
-import { compare, hash } from "bcryptjs";
+import { compare } from "bcryptjs";
 import { z } from "zod";
 
 import { auth } from "@/http/middlewares/auth";
