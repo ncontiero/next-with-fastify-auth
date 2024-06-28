@@ -29,6 +29,8 @@ export async function verifyToken(app: FastifyInstance) {
 
       if (!tokenExists) {
         throw new BadRequestError("Invalid token");
+      } else if (tokenExists.expired) {
+        throw new BadRequestError("Token expired");
       }
 
       return reply.status(204).send();

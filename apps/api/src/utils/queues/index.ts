@@ -3,8 +3,8 @@ import {
   sendEmailVerificationWorker,
 } from "./send-email-verification";
 import {
-  sendPasswordRecoverYEmailWorker,
   sendPasswordRecoveryEmailQueue,
+  sendPasswordRecoveryEmailWorker,
 } from "./send-password-recovery-email";
 import {
   sendWelcomeEmailQueue,
@@ -14,12 +14,19 @@ import {
   sendPasswordChangeEmailQueue,
   sendPasswordChangeEmailWorker,
 } from "./send-password-change-email";
+import {
+  handleTokensQueue,
+  handleTokensWorker,
+  scheduleJobs,
+} from "./scheduler";
 
 const gracefulShutdown = async (signal: string) => {
   console.warn(`Received ${signal}, closing server...`);
   await sendEmailVerificationWorker.close();
-  await sendPasswordRecoverYEmailWorker.close();
+  await sendPasswordRecoveryEmailWorker.close();
   await sendWelcomeEmailWorker.close();
+  await sendPasswordChangeEmailWorker.close();
+  await handleTokensWorker.close();
   process.exit(0);
 };
 
@@ -30,9 +37,12 @@ export {
   sendEmailVerificationQueue,
   sendEmailVerificationWorker,
   sendPasswordRecoveryEmailQueue,
-  sendPasswordRecoverYEmailWorker,
+  sendPasswordRecoveryEmailWorker,
   sendWelcomeEmailQueue,
   sendWelcomeEmailWorker,
   sendPasswordChangeEmailQueue,
   sendPasswordChangeEmailWorker,
+  handleTokensQueue,
+  handleTokensWorker,
+  scheduleJobs,
 };

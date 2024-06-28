@@ -15,7 +15,7 @@ export const sendPasswordRecoveryEmailQueue = new Queue(
 );
 
 type SendPasswordRecoveryEmailJobProps = Job<{ user: User }, any, string>;
-export const sendPasswordRecoverYEmailWorker = new Worker(
+export const sendPasswordRecoveryEmailWorker = new Worker(
   SEND_PASSWORD_RECOVERY_NAME,
   async ({ data: { user } }: SendPasswordRecoveryEmailJobProps) => {
     await prisma.$transaction(async (tx) => {

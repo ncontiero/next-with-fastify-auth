@@ -29,6 +29,7 @@ enum TokenType {
 model Token {
   id        String    @id @default(uuid())
   type      TokenType
+  expired   Boolean   @default(false)
   createdAt DateTime  @default(now()) @map("created_at")
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
