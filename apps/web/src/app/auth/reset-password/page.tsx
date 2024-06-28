@@ -14,16 +14,18 @@ type ResetPasswordPageProps = {
 export default async function ResetPasswordPage({
   searchParams,
 }: ResetPasswordPageProps) {
+  let tokenIsExpired = false;
   const code = (
     await z
       .string()
       .uuid()
       .refine(async (v) => {
-        const { ok } = await api.post("verifyToken", {
+        const { ok, errorMsg } = await api.post("verifyToken", {
           body: JSON.stringify({ token: v }),
           headers: { "Content-Type": "application/json" },
           throwError: false,
         });
+        tokenIsExpired = errorMsg === "Token expired";
         return ok ? v : undefined;
       })
       .safeParseAsync(searchParams.code)
@@ -32,7 +34,9 @@ export default async function ResetPasswordPage({
   if (!code) {
     return (
       <div className="flex size-full flex-col items-center justify-center">
-        <h1 className="text-xl font-bold">Invalid reset password link</h1>
+        <h1 className="text-xl font-bold">
+          {tokenIsExpired ? "Expired" : "Invalid"} reset password link
+        </h1>
         <p className="mt-2 text-sm font-medium text-foreground/60">
           Please request a new password reset link{" "}
           <Link href="/auth/forgot-password">here</Link>.
