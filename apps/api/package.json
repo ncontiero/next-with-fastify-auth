@@ -34,7 +34,7 @@
     "@types/nodemailer": "^6.4.15",
     "eslint": "^9.6.0",
     "prisma": "^5.16.1",
-    "tsx": "^4.16.0",
+    "tsx": "^4.16.2",
     "typescript": "^5.5.3"
   },
   "engines": {
