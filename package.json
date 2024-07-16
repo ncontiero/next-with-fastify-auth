@@ -16,7 +16,7 @@
   "devDependencies": {
     "@dkshs/eslint-config": "^2.7.0",
     "@nwfa/tsconfig": "workspace:*",
-    "@types/node": "^20.14.10",
+    "@types/node": "^20.14.11",
     "eslint": "^9.7.0",
     "turbo": "^2.0.6",
     "typescript": "^5.5.3"
