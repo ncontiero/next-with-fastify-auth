@@ -17,7 +17,7 @@
     "@dkshs/eslint-config": "^2.7.2",
     "@nwfa/tsconfig": "workspace:*",
     "@types/node": "^20.14.12",
-    "eslint": "^9.7.0",
+    "eslint": "^9.8.0",
     "turbo": "^2.0.9",
     "typescript": "^5.5.4"
   },
