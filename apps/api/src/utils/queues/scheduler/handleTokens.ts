@@ -1,4 +1,4 @@
-import { Queue, QueueEvents, type RepeatOptions, Worker } from "bullmq";
+import { type RepeatOptions, Queue, QueueEvents, Worker } from "bullmq";
 import { prisma } from "@/lib/prisma";
 import { genericErrorHandler } from "@/utils/error-handler";
 import { logger } from "@/utils/logger";

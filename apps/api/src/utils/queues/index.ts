@@ -34,15 +34,15 @@ process.on("SIGINT", () => gracefulShutdown("SIGINT"));
 process.on("SIGTERM", () => gracefulShutdown("SIGTERM"));
 
 export {
+  handleTokensQueue,
+  handleTokensWorker,
+  scheduleJobs,
   sendEmailVerificationQueue,
   sendEmailVerificationWorker,
+  sendPasswordChangeEmailQueue,
+  sendPasswordChangeEmailWorker,
   sendPasswordRecoveryEmailQueue,
   sendPasswordRecoveryEmailWorker,
   sendWelcomeEmailQueue,
   sendWelcomeEmailWorker,
-  sendPasswordChangeEmailQueue,
-  sendPasswordChangeEmailWorker,
-  handleTokensQueue,
-  handleTokensWorker,
-  scheduleJobs,
 };
