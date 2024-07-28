@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@dkshs/eslint-config':
-        specifier: ^2.8.0
-        version: 2.8.0(@types/eslint@8.56.10)(eslint@9.8.0)(tailwindcss@3.4.7)(typescript@5.5.4)
+        specifier: ^2.8.1
+        version: 2.8.1(@types/eslint@8.56.10)(eslint@9.8.0)(tailwindcss@3.4.7)(typescript@5.5.4)
       '@nwfa/tsconfig':
         specifier: workspace:*
         version: link:packages/tsconfig
@@ -67,8 +67,8 @@ importers:
         version: 3.23.8
     devDependencies:
       '@dkshs/eslint-config':
-        specifier: ^2.8.0
-        version: 2.8.0(@types/eslint@8.56.10)(eslint@9.8.0)(tailwindcss@3.4.7)(typescript@5.5.4)
+        specifier: ^2.8.1
+        version: 2.8.1(@types/eslint@8.56.10)(eslint@9.8.0)(tailwindcss@3.4.7)(typescript@5.5.4)
       '@nwfa/tsconfig':
         specifier: workspace:*
         version: link:../../packages/tsconfig
@@ -152,8 +152,8 @@ importers:
         version: 3.23.8
     devDependencies:
       '@dkshs/eslint-config':
-        specifier: 2.8.0
-        version: 2.8.0(@types/eslint@8.56.10)(eslint@9.8.0)(tailwindcss@3.4.7)(typescript@5.5.4)
+        specifier: 2.8.1
+        version: 2.8.1(@types/eslint@8.56.10)(eslint@9.8.0)(tailwindcss@3.4.7)(typescript@5.5.4)
       '@nwfa/tsconfig':
         specifier: workspace:*
         version: link:../../packages/tsconfig
@@ -205,8 +205,8 @@ packages:
     resolution: {integrity: sha512-EStJpq4OuY8xYfhGVXngigBJRWxftKX9ksiGDnmlY3o7B/V7KIAc9X4oiK87uPJSc/vs5L869bem5fhZa8caZw==}
     engines: {node: '>=6.9.0'}
 
-  '@dkshs/eslint-config@2.8.0':
-    resolution: {integrity: sha512-wNW7YYxhmhEyZP7BNlROQP3hQ+T0JyiOl7jVy0jeKi4bGCAvcEymgkcU3dQgyc6Pa0ozeC8of7bkswErAaSVeQ==}
+  '@dkshs/eslint-config@2.8.1':
+    resolution: {integrity: sha512-l0Sv+EnmSg8FDoKs9xqKaIPAKuwLmLI9UFRqxKkcaQ/XZX35UrOtElrqaHwv5tY1zS4/KlO7siFf21n8Yd1O5g==}
     peerDependencies:
       eslint: '>=8.40.0'
 
@@ -3195,7 +3195,7 @@ snapshots:
       js-tokens: 4.0.0
       picocolors: 1.0.1
 
-  '@dkshs/eslint-config@2.8.0(@types/eslint@8.56.10)(eslint@9.8.0)(tailwindcss@3.4.7)(typescript@5.5.4)':
+  '@dkshs/eslint-config@2.8.1(@types/eslint@8.56.10)(eslint@9.8.0)(tailwindcss@3.4.7)(typescript@5.5.4)':
     dependencies:
       '@next/eslint-plugin-next': 14.3.0-canary.87
       eslint: 9.8.0
@@ -3246,7 +3246,7 @@ snapshots:
       '@types/estree': 1.0.5
       '@typescript-eslint/types': 7.17.0
       comment-parser: 1.4.1
-      esquery: 1.5.0
+      esquery: 1.6.0
       jsdoc-type-pratt-parser: 4.0.0
 
   '@es-joy/jsdoccomment@0.46.0':
@@ -3953,7 +3953,7 @@ snapshots:
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.5
-      semver: 7.6.2
+      semver: 7.6.3
       ts-api-utils: 1.3.0(typescript@5.5.4)
     optionalDependencies:
       typescript: 5.5.4
@@ -4550,7 +4550,7 @@ snapshots:
   eslint-compat-utils@0.5.1(eslint@9.8.0):
     dependencies:
       eslint: 9.8.0
-      semver: 7.6.2
+      semver: 7.6.3
 
   eslint-import-resolver-node@0.3.9:
     dependencies:
@@ -4597,7 +4597,7 @@ snapshots:
       get-tsconfig: 4.7.5
       is-glob: 4.0.3
       minimatch: 9.0.5
-      semver: 7.6.2
+      semver: 7.6.3
       stable-hash: 0.0.4
       tslib: 2.6.3
     transitivePeerDependencies:
@@ -4668,7 +4668,7 @@ snapshots:
       globals: 15.8.0
       ignore: 5.3.1
       minimatch: 9.0.5
-      semver: 7.6.2
+      semver: 7.6.3
 
   eslint-plugin-perfectionist@3.0.0(eslint@9.8.0)(typescript@5.5.4):
     dependencies:
@@ -4759,7 +4759,7 @@ snapshots:
       clean-regexp: 1.0.0
       core-js-compat: 3.37.1
       eslint: 9.8.0
-      esquery: 1.5.0
+      esquery: 1.6.0
       globals: 15.8.0
       indent-string: 4.0.0
       is-builtin-module: 3.2.1
@@ -4768,7 +4768,7 @@ snapshots:
       read-pkg-up: 7.0.1
       regexp-tree: 0.1.27
       regjsparser: 0.10.0
-      semver: 7.6.2
+      semver: 7.6.3
       strip-indent: 3.0.0
 
   eslint-plugin-unused-imports@4.0.1(eslint@9.8.0):
@@ -5330,7 +5330,7 @@ snapshots:
       acorn: 8.12.0
       eslint-visitor-keys: 3.4.3
       espree: 9.6.1
-      semver: 7.6.2
+      semver: 7.6.3
 
   jsx-ast-utils@3.3.5:
     dependencies:
