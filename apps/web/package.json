@@ -36,7 +36,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@dkshs/eslint-config": "2.9.1",
+    "@dkshs/eslint-config": "2.9.2",
     "@nwfa/tsconfig": "workspace:*",
     "@types/node": "^20.14.15",
     "@types/react": "^18.3.3",
