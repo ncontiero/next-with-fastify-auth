@@ -14,7 +14,7 @@
     "lint:fix": "eslint . --fix && turbo lint:fix"
   },
   "devDependencies": {
-    "@dkshs/eslint-config": "2.9.2",
+    "@dkshs/eslint-config": "2.10.0",
     "@nwfa/tsconfig": "workspace:*",
     "@types/node": "^20.14.15",
     "eslint": "^9.9.0",
