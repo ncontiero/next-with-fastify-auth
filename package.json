@@ -18,7 +18,7 @@
     "@nwfa/tsconfig": "workspace:*",
     "@types/node": "^20.16.1",
     "eslint": "^9.9.1",
-    "turbo": "^2.0.14",
+    "turbo": "^2.1.0",
     "typescript": "^5.5.4"
   },
   "engines": {
