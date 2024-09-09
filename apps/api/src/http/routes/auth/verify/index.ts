@@ -1,8 +1,8 @@
 import type { FastifyInstance } from "fastify";
 
-import { verifyToken } from "./verify-token";
-import { verifyEmail } from "./verify-email";
 import { requestEmailVerification } from "./request-email-verification";
+import { verifyEmail } from "./verify-email";
+import { verifyToken } from "./verify-token";
 
 const VERIFY_PREFIX = "/verify";
 

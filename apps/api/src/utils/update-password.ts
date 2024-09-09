@@ -1,5 +1,5 @@
-import type { ITXClientDenyList } from "@prisma/client/runtime/library";
 import type { PrismaClient, User } from "@prisma/client";
+import type { ITXClientDenyList } from "@prisma/client/runtime/library";
 
 import { hash } from "bcryptjs";
 import { prisma } from "@/lib/prisma";

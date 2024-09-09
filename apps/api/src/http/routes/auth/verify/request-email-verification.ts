@@ -2,8 +2,8 @@ import type { FastifyInstance } from "fastify";
 import type { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from "zod";
 
-import { UnauthorizedError } from "@/http/routes/_errors/unauthorized-error";
 import { auth } from "@/http/middlewares/auth";
+import { UnauthorizedError } from "@/http/routes/_errors/unauthorized-error";
 import { prisma } from "@/lib/prisma";
 import { sendEmailVerificationQueue } from "@/utils/queues";
 

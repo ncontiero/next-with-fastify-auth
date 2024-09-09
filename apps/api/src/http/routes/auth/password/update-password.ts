@@ -4,10 +4,10 @@ import { compare } from "bcryptjs";
 import { z } from "zod";
 
 import { auth } from "@/http/middlewares/auth";
-import { UnauthorizedError } from "@/http/routes/_errors/unauthorized-error";
 import { BadRequestError } from "@/http/routes/_errors/bad-request-error";
-import { updatePassword as updatePasswordUtil } from "@/utils/update-password";
+import { UnauthorizedError } from "@/http/routes/_errors/unauthorized-error";
 import { prisma } from "@/lib/prisma";
+import { updatePassword as updatePasswordUtil } from "@/utils/update-password";
 
 export async function updatePassword(app: FastifyInstance) {
   app

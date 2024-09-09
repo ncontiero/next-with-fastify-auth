@@ -2,8 +2,8 @@ import type { FastifyInstance } from "fastify";
 import type { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from "zod";
 
-import { prisma } from "@/lib/prisma";
 import { env } from "@/env";
+import { prisma } from "@/lib/prisma";
 
 export async function verifyEmail(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().get(

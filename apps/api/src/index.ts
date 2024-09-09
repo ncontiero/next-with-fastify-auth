@@ -1,11 +1,11 @@
+import fastifyCors from "@fastify/cors";
+import fastifyJwt from "@fastify/jwt";
+import fastify from "fastify";
 import {
   type ZodTypeProvider,
   serializerCompiler,
   validatorCompiler,
 } from "fastify-type-provider-zod";
-import fastify from "fastify";
-import fastifyCors from "@fastify/cors";
-import fastifyJwt from "@fastify/jwt";
 
 import { env } from "@/env";
 import { errorHandler } from "@/http/error-handler";

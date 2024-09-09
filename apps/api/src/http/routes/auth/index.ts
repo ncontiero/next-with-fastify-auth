@@ -1,9 +1,9 @@
 import type { FastifyInstance } from "fastify";
 
+import { passwordRoutes } from "./password";
+import { profileRoutes } from "./profile";
 import { signIn } from "./sign-in";
 import { signUp } from "./sign-up";
-import { profileRoutes } from "./profile";
-import { passwordRoutes } from "./password";
 import { verifyRoutes } from "./verify";
 
 const AUTH_PREFIX = "/auth";

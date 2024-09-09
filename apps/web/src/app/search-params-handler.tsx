@@ -1,8 +1,8 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export function SearchParamsHandler() {
   const router = useRouter();

@@ -2,9 +2,9 @@ import type { User } from "@prisma/client";
 import { type Job, Queue, QueueEvents, Worker } from "bullmq";
 
 import { prisma } from "@/lib/prisma";
-import { logger } from "../logger";
 import { sendEmailVerification } from "../emails";
 import { genericErrorHandler } from "../error-handler";
+import { logger } from "../logger";
 import { defaultQueueOpts, defaultWorkerOpts } from "./configs";
 
 export const SEND_EMAIL_VERIFICATION_NAME = "email-verification";

@@ -2,12 +2,11 @@
 
 import { toast } from "react-toastify";
 import { AlertTriangle, Loader2 } from "lucide-react";
-import { useFormState } from "@/hooks/useFormState";
-import { Label } from "@/components/ui/Label";
-import { Input } from "@/components/ui/Input";
-import { Button } from "@/components/ui/Button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/Alert";
-
+import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
+import { Label } from "@/components/ui/Label";
+import { useFormState } from "@/hooks/useFormState";
 import { updatePasswordAction } from "./actions";
 
 export function PasswordForm() {
