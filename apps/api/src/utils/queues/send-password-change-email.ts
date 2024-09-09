@@ -1,9 +1,9 @@
 import type { User } from "@prisma/client";
 import { type Job, Queue, QueueEvents, Worker } from "bullmq";
 
-import { logger } from "../logger";
-import { genericErrorHandler } from "../error-handler";
 import { sendPasswordChangeEmail } from "../emails";
+import { genericErrorHandler } from "../error-handler";
+import { logger } from "../logger";
 import { defaultQueueOpts, defaultWorkerOpts } from "./configs";
 
 export const SEND_PASSWORD_CHANGE_EMAIL_NAME = "send-password-change-email";

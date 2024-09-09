@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import type { User } from "@/utils/types";
 
 import { redirect } from "next/navigation";
-import { isAuthenticated } from "@/utils/auth";
-import { api } from "@/utils/api";
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tabs";
-import { ProfileForm } from "./ProfileForm";
+import { api } from "@/utils/api";
+import { isAuthenticated } from "@/utils/auth";
 import { PasswordForm } from "./PasswordForm";
+import { ProfileForm } from "./ProfileForm";
 
 export const metadata: Metadata = {
   title: "Settings",

@@ -1,8 +1,8 @@
 import type { FastifyInstance } from "fastify";
 
+import { deleteProfile } from "./delete-profile";
 import { getProfile } from "./get-profile";
 import { updateProfile } from "./update-profile";
-import { deleteProfile } from "./delete-profile";
 
 const PROFILE_PREFIX = "/profile";
 

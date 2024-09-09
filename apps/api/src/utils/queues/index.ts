@@ -1,7 +1,16 @@
 import {
+  handleTokensQueue,
+  handleTokensWorker,
+  scheduleJobs,
+} from "./scheduler";
+import {
   sendEmailVerificationQueue,
   sendEmailVerificationWorker,
 } from "./send-email-verification";
+import {
+  sendPasswordChangeEmailQueue,
+  sendPasswordChangeEmailWorker,
+} from "./send-password-change-email";
 import {
   sendPasswordRecoveryEmailQueue,
   sendPasswordRecoveryEmailWorker,
@@ -10,15 +19,6 @@ import {
   sendWelcomeEmailQueue,
   sendWelcomeEmailWorker,
 } from "./send-welcome-email";
-import {
-  sendPasswordChangeEmailQueue,
-  sendPasswordChangeEmailWorker,
-} from "./send-password-change-email";
-import {
-  handleTokensQueue,
-  handleTokensWorker,
-  scheduleJobs,
-} from "./scheduler";
 
 const gracefulShutdown = async (signal: string) => {
   console.warn(`Received ${signal}, closing server...`);

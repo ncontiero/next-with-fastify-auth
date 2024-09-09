@@ -1,14 +1,13 @@
 "use client";
 
-import { AlertTriangle, Loader2 } from "lucide-react";
 import { toast } from "react-toastify";
-import { useFormState } from "@/hooks/useFormState";
-
+import { AlertTriangle, Loader2 } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/Alert";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import { Link } from "@/components/ui/Link";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/Alert";
+import { useFormState } from "@/hooks/useFormState";
 
 import { recoverPasswordAction } from "./actions";
 

@@ -2,9 +2,9 @@ import type { User } from "@prisma/client";
 import { type Job, Queue, QueueEvents, Worker } from "bullmq";
 
 import { prisma } from "@/lib/prisma";
-import { logger } from "../logger";
-import { genericErrorHandler } from "../error-handler";
 import { sendPasswordRecoveryEmail } from "../emails";
+import { genericErrorHandler } from "../error-handler";
+import { logger } from "../logger";
 import { defaultQueueOpts, defaultWorkerOpts } from "./configs";
 
 export const SEND_PASSWORD_RECOVERY_NAME = "password-recover";
