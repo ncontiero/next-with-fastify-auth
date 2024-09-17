@@ -31,7 +31,7 @@
     "@nwfa/tsconfig": "workspace:*",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^22.5.5",
-    "@types/nodemailer": "^6.4.15",
+    "@types/nodemailer": "^6.4.16",
     "eslint": "^9.10.0",
     "prisma": "^5.19.1",
     "tsx": "^4.19.1",
