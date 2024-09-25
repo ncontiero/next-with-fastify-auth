@@ -57,8 +57,8 @@ importers:
         specifier: ^4.5.1
         version: 4.5.1
       fastify-type-provider-zod:
-        specifier: ^2.0.0
-        version: 2.0.0(fastify@4.28.1)(zod@3.23.8)
+        specifier: ^3.0.0
+        version: 3.0.0(fastify@4.28.1)(zod@3.23.8)
       nodemailer:
         specifier: ^6.9.15
         version: 6.9.15
@@ -1793,10 +1793,10 @@ packages:
   fastify-plugin@4.5.1:
     resolution: {integrity: sha512-stRHYGeuqpEZTL1Ef0Ovr2ltazUT9g844X5z/zEBFLG8RYlpDiOCIG+ATvYEp+/zmc7sN29mcIMp8gvYplYPIQ==}
 
-  fastify-type-provider-zod@2.0.0:
-    resolution: {integrity: sha512-LSbz6DikD9BcQmSDFn7uXFmrFS2gRMiSkwiQeIeAH3XEGOyjokJKsH4DRRuxSn7fTz1UNTNiujib4+MTNw+nOg==}
+  fastify-type-provider-zod@3.0.0:
+    resolution: {integrity: sha512-7zU+leWpPC5r8vQotPbkfUZhU144ScsQRkkQjgTGjwKGhNMEj6/bPO/yerSFJU9YCGQfSwao33RPFm1HXJUR5g==}
     peerDependencies:
-      fastify: ^4.0.0
+      fastify: ^5.0.0
       zod: ^3.14.2
 
   fastify@4.28.1:
@@ -5012,7 +5012,7 @@ snapshots:
 
   fastify-plugin@4.5.1: {}
 
-  fastify-type-provider-zod@2.0.0(fastify@4.28.1)(zod@3.23.8):
+  fastify-type-provider-zod@3.0.0(fastify@4.28.1)(zod@3.23.8):
     dependencies:
       fastify: 4.28.1
       zod: 3.23.8
