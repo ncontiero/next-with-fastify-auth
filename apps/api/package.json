@@ -30,7 +30,7 @@
     "@dkshs/eslint-config": "3.2.2",
     "@nwfa/tsconfig": "workspace:*",
     "@types/bcryptjs": "^2.4.6",
-    "@types/node": "^22.7.7",
+    "@types/node": "^22.7.8",
     "@types/nodemailer": "^6.4.16",
     "eslint": "^9.13.0",
     "prisma": "^5.21.1",
