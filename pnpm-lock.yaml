@@ -42,8 +42,8 @@ importers:
         specifier: ^2.4.3
         version: 2.4.3
       bullmq:
-        specifier: ^5.25.0
-        version: 5.25.0
+        specifier: ^5.25.1
+        version: 5.25.1
       colorette:
         specifier: ^2.0.20
         version: 2.0.20
@@ -1302,8 +1302,8 @@ packages:
     resolution: {integrity: sha512-zhaCDicdLuWN5UbN5IMnFqNMhNfo919sH85y2/ea+5Yg9TsTkeZxpL+JLbp6cgYFS4sRLp3YV4S6yDuqVWHYOw==}
     engines: {node: '>=6'}
 
-  bullmq@5.25.0:
-    resolution: {integrity: sha512-QBbtabDUgdztalbYbrCc5NFwrRUKOZyiAkVFPhdrBGFsdraPq5SrXx6WP7U1stKj3hYYp1IuW+n3wuksYGITvw==}
+  bullmq@5.25.1:
+    resolution: {integrity: sha512-3q87TXIN31OgNeHT9n4nQWVV5wMog6dXUAoz1rAMXjb1QT2Fn8pElg5m/IHomqe7Q7FA/3b/8q4W8RCAFFUmRA==}
 
   busboy@1.6.0:
     resolution: {integrity: sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==}
@@ -4433,7 +4433,7 @@ snapshots:
 
   builtin-modules@3.3.0: {}
 
-  bullmq@5.25.0:
+  bullmq@5.25.1:
     dependencies:
       cron-parser: 4.9.0
       ioredis: 5.4.1
