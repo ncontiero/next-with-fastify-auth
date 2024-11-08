@@ -40,7 +40,7 @@ export async function signUpAction(data: FormData) {
       throw new Error("Invalid token");
     }
 
-    cookies().set("token", data.token, {
+    (await cookies()).set("token", data.token, {
       path: "/",
       maxAge: 60 * 60 * 24 * 7, // 7 days
     });

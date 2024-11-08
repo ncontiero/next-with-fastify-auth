@@ -1,7 +1,7 @@
 import "react-toastify/dist/ReactToastify.min.css";
 import "./globals.css";
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import { type ReactNode, Suspense } from "react";
 
 import { ToastContainer } from "react-toastify";
 import { Inter } from "next/font/google";
@@ -63,9 +63,11 @@ export default function RootLayout({
           closeOnClick
           stacked
         />
-        <SearchParamsHandler />
-        <Header />
-        <div className="pb-20 pt-[72px]">{children}</div>
+        <Suspense>
+          <SearchParamsHandler />
+          <Header />
+          <div className="pb-20 pt-[72px]">{children}</div>
+        </Suspense>
       </body>
     </html>
   );

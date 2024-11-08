@@ -8,7 +8,9 @@ export const metadata = {
 };
 
 type ResetPasswordPageProps = {
-  readonly searchParams: { [key: string]: string | string[] | undefined };
+  readonly searchParams: Promise<{
+    [key: string]: string | string[] | undefined;
+  }>;
 };
 
 export default async function ResetPasswordPage({
@@ -28,7 +30,7 @@ export default async function ResetPasswordPage({
         tokenIsExpired = errorMsg === "Token expired";
         return ok ? v : undefined;
       })
-      .safeParseAsync(searchParams.code)
+      .safeParseAsync((await searchParams).code)
   ).data;
 
   if (!code) {
