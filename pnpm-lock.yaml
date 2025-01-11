@@ -33,8 +33,8 @@ importers:
         specifier: ^10.0.2
         version: 10.0.2
       '@fastify/jwt':
-        specifier: ^9.0.2
-        version: 9.0.2
+        specifier: ^9.0.3
+        version: 9.0.3
       '@prisma/client':
         specifier: 6.1.0
         version: 6.1.0(prisma@6.1.0)
@@ -429,8 +429,8 @@ packages:
   '@fastify/forwarded@3.0.0':
     resolution: {integrity: sha512-kJExsp4JCms7ipzg7SJ3y8DwmePaELHxKYtg+tZow+k0znUTf3cb+npgyqm8+ATZOdmfgfydIebPDWM172wfyA==}
 
-  '@fastify/jwt@9.0.2':
-    resolution: {integrity: sha512-/ppnbKVhxnHV08WZHpP2phH31eJ3FnyU43Sm8ERcYZwudcwqzmQ5+ptaqOvAyykIvfGmRC3R//0sc8HziJhnww==}
+  '@fastify/jwt@9.0.3':
+    resolution: {integrity: sha512-5OjeozLzwhMhrOkadHG9FhS5S3wNVIN6ADhBJd/x3VJIWptlRdc1ORksA6NHJ1ihvuAb0IOVK9giaCZTelnMSg==}
 
   '@fastify/merge-json-schemas@0.1.1':
     resolution: {integrity: sha512-fERDVz7topgNjtXsJTTW1JKLy0rhuLRcquYqNR9rF7OcVpCa2OVW49ZPDIhaRRCaUuvVxI+N416xUoF76HNSXA==}
@@ -3571,7 +3571,7 @@ snapshots:
 
   '@fastify/forwarded@3.0.0': {}
 
-  '@fastify/jwt@9.0.2':
+  '@fastify/jwt@9.0.3':
     dependencies:
       '@fastify/error': 4.0.0
       '@lukeed/ms': 2.0.2
