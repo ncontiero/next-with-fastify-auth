@@ -15,7 +15,7 @@
   "dependencies": {
     "@fastify/cors": "^10.0.2",
     "@fastify/jwt": "^9.0.3",
-    "@prisma/client": "6.2.1",
+    "@prisma/client": "6.3.1",
     "bcryptjs": "^2.4.3",
     "bullmq": "^5.40.0",
     "colorette": "^2.0.20",
@@ -33,7 +33,7 @@
     "@types/node": "^22.10.7",
     "@types/nodemailer": "^6.4.17",
     "eslint": "^9.19.0",
-    "prisma": "^6.2.1",
+    "prisma": "^6.3.1",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3"
   },
