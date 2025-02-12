@@ -2,7 +2,7 @@
   "name": "@nwfa/tsconfig",
   "version": "1.0.0",
   "private": true,
-  "packageManager": "pnpm@10.2.0",
+  "packageManager": "pnpm@10.3.0",
   "description": "A collection of TypeScript configuration files used by the NWFA project.",
   "author": "DKSHS",
   "license": "MIT",

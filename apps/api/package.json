@@ -1,7 +1,7 @@
 {
   "name": "@nwfa/api",
   "version": "1.0.0",
-  "packageManager": "pnpm@10.2.0",
+  "packageManager": "pnpm@10.3.0",
   "description": "A Fastify project with authentication and authorization.",
   "author": "DKSHS",
   "license": "MIT",
