@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@fastify/cors": "^10.0.2",
-    "@fastify/jwt": "^9.0.3",
+    "@fastify/jwt": "^9.0.4",
     "@prisma/client": "6.3.1",
     "bcryptjs": "^2.4.3",
     "bullmq": "^5.40.0",
