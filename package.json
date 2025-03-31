@@ -2,9 +2,9 @@
   "name": "next-with-fastify-auth",
   "type": "module",
   "version": "1.0.0",
-  "packageManager": "pnpm@10.6.2",
+  "packageManager": "pnpm@10.7.0",
   "description": "A project with Next.Js and Fastify.",
-  "author": "DKSHS",
+  "author": "Nicolas Contiero <https://github.com/ncontiero>",
   "license": "MIT",
   "scripts": {
     "build": "turbo build",
@@ -14,10 +14,10 @@
     "lint:fix": "eslint . --fix && turbo lint:fix"
   },
   "devDependencies": {
-    "@dkshs/eslint-config": "4.4.0",
+    "@ncontiero/eslint-config": "5.1.1",
     "@nwfa/tsconfig": "workspace:*",
-    "@types/node": "^22.13.10",
-    "eslint": "^9.22.0",
+    "@types/node": "^22.13.14",
+    "eslint": "^9.23.0",
     "turbo": "^2.4.4",
     "typescript": "^5.8.2"
   },
