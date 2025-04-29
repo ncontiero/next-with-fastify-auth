@@ -2,7 +2,7 @@
   "name": "next-with-fastify-auth",
   "type": "module",
   "version": "1.0.0",
-  "packageManager": "pnpm@10.9.0",
+  "packageManager": "pnpm@10.10.0",
   "description": "A project with Next.Js and Fastify.",
   "author": "Nicolas Contiero <https://github.com/ncontiero>",
   "license": "MIT",
